@@ -1,0 +1,106 @@
+{
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "filter": "Filter",
+    "requestError": "Unable to complete the request. Please try again later."
+  },
+  "greetings": {
+    "rootLayout": "Root layout! I render on all paths (in English)",
+    "exactPath": "Hello {exactPath} exact path!",
+    "privateLayout": "Hello private layout! I render on all paths inside the /_private/ folder",
+    "publicLayout": "Public layout! I render on all paths inside the /(public)/ folder",
+    "home": "Welcome Home!"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "The page you are looking for does not exist."
+  },
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "passwordMustInclude": "Password must include",
+    "errors": {
+      "required": "{field} is required.",
+      "invalidField": "Please enter a valid {field}.",
+      "minLength": "{field} should contain at least {length} characters.",
+      "containsNumber": "{field} must contain at least one number.",
+      "passwordMismatch": "Passwords don't match.",
+      "passwordTooWeak": "Password is too weak.",
+      "containsLetter": "{field} must contain at least one letter."
+    }
+  },
+  "login": {
+    "forgotYourPassword": "Forgot your password?",
+    "login": "Login",
+    "noAccount": "Don't have an account? <Link>Sign up</Link>",
+    "error": "Not able to log in",
+    "success": "Logged in successfully"
+  },
+  "logout": {
+    "logOut": "Log out",
+    "areYouSureYouWantToLogout": "Are you sure you want to logout?",
+    "youWillLoseYourChanges": "You will lose your changes!"
+  },
+  "users": {
+    "title": "Users Information",
+    "table": {
+      "columns": {
+        "id": "ID",
+        "email": "Email",
+        "name": "Name",
+        "actions": {
+          "title": "Actions",
+          "ariaLabel": "Open menu",
+          "copyUserEmail": "Copy user email",
+          "areYouAbsolutelySure": "Are you absolutely sure?",
+          "thisActionCantBeUndone": "This action cannot be undone. Are you sure you want to permanently delete { name }?",
+          "deletionSuccess": "{ name } was deleted successfully!",
+          "deletionError": "There was an error deleting { name }.",
+          "filterByEmail": "Filter by email..."
+        }
+      }
+    },
+    "create": {
+      "description": "Complete the form to create a new user",
+      "title": "Add User",
+      "success": "User created successfully",
+      "error": "Not able to create user"
+    },
+    "update": {
+      "description": "Complete the form to update the user",
+      "title": "Update User",
+      "success": "User updated successfully",
+      "error": "Not able to update user"
+    }
+  },
+  "buttons": {
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update"
+  },
+  "table": {
+    "noResults": "No results",
+    "filters": {
+      "columns": "Columns"
+    },
+    "pagination": {
+      "range": "{from}-{to} from {total}",
+      "prev": "Previous page",
+      "next": "Next page",
+      "gotoPage": "Go to page {{page}}"
+    }
+  },
+  "navigation": {
+    "links": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "users": "Users"
+    }
+  }
+}

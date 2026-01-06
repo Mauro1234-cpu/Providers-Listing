@@ -1,0 +1,101 @@
+{
+  "common": {
+    "yes": "Sí",
+    "no": "No",
+    "close": "Cerrar",
+    "filter": "Filtrar",
+    "requestError": "No se pudo completar la solicitud. Por favor, inténtelo de nuevo más tarde."
+  },
+  "greetings": {
+    "rootLayout": "Root layout! Me renderizo en todas las rutas (en español)",
+    "exactPath": "Hola {exactPath} ruta exacta!",
+    "privateLayout": "Hola layout privado! Me renderizo en todas las rutas dentro de la carpeta /_private/",
+    "publicLayout": "Layout público! Me renderizo en todas las rutas dentro de la carpeta /(public)/",
+    "home": "Bienvenido al home!"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Contraseña",
+    "name": "Nombre",
+    "confirmPassword": "Confirmar contraseña",
+    "passwordMustInclude": "La contraseña debe incluir",
+    "errors": {
+      "required": "{field} es requerido.",
+      "invalidField": "Por favor ingresar un/a {field} válido/a.",
+      "minLength": "{field} debe contener al menos {length} caracteres.",
+      "containsNumber": "{field} debe contener al menos un número.",
+      "passwordMismatch": "Las contraseñas no coinciden.",
+      "containsLetter": "{field} debe contener al menos una letra."
+    }
+  },
+  "login": {
+    "forgotYourPassword": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar Sesión",
+    "noAccount": "¿No tienes una cuenta? <Link>Regístrate</Link>",
+    "error": "No se pudo iniciar sesión",
+    "success": "Inició sesión con éxito"
+  },
+  "logout": {
+    "logOut": "Cerrar sesión",
+    "areYouSureYouWantToLogout": "¿Estás seguro que quieres cerrar sesión?",
+    "youWillLoseYourChanges": "¡Perderás tus cambios!"
+  },
+  "users": {
+    "title": "Información de Usuarios",
+    "table": {
+      "columns": {
+        "id": "ID",
+        "email": "Email",
+        "name": "Nombre",
+        "actions": {
+          "title": "Acciones",
+          "ariaLabel": "Abrir menú",
+          "copyUserEmail": "Copiar email de usuario",
+          "areYouAbsolutelySure": "¿Estás absolutamente seguro/a?",
+          "thisActionCantBeUndone": "Esta acción no se puede deshacer. ¿Estás seguro/a de borrar permanentemente a { name }?",
+          "deletionSuccess": "¡{ name } fue borrado con éxito!",
+          "deletionError": "Hubo un error borrando { name }.",
+          "filterByEmail": "Filtrar por email..."
+        }
+      }
+    },
+    "create": {
+      "description": "Completa el formulario para crear un nuevo usuario",
+      "title": "Agregar Usuario",
+      "success": "Usuario creado con éxito",
+      "error": "No se pudo crear el usuario"
+    },
+    "update": {
+      "description": "Completa el formulario para actualizar el usuario",
+      "title": "Actualizar Usuario",
+      "success": "Usuario actualizado con éxito",
+      "error": "No se pudo actualizar el usuario"
+    }
+  },
+  "buttons": {
+    "delete": "Borrar",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "create": "Crear",
+    "update": "Actualizar"
+  },
+  "table": {
+    "noResults": "Sin resultados",
+    "filters": {
+      "columns": "Columnas"
+    },
+    "pagination": {
+      "range": "{from}-{to} de {total}",
+      "prev": "Página anterior",
+      "next": "Página siguiente",
+      "gotoPage": "Ir a la página {{page}}"
+    }
+  },
+  "navigation": {
+    "links": {
+      "home": "Inicio",
+      "dashboard": "Panel",
+      "users": "Usuarios"
+    }
+  }
+}

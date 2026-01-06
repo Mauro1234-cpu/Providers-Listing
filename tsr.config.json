@@ -1,0 +1,8 @@
+{
+  "generatedRouteTree": "./src/routeTree.gen.ts",
+  "indexToken": "page",
+  "quoteStyle": "single",
+  "routeFileIgnorePrefix": "-",
+  "routesDirectory": "./src/routes",
+  "routeToken": "layout"
+}
