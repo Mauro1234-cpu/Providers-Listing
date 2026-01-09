@@ -10,13 +10,14 @@ type PasswordInputProps = ComponentProps<typeof Input> & {
 
 const PasswordInputVariants = tv({
   slots: {
-    input: "",
+    input: "focus:border-border-brand-default focus:outline-none",
     icon: "cursor-pointer",
   },
   variants: {
     error: {
       true: {
-        input: "border-border-danger-tertiary text-text-danger-tertiary",
+        input:
+          "border-border-danger-tertiary text-text-danger-tertiary focus:border-border-danger-tertiary focus:outline-none",
       },
     },
     show: {
