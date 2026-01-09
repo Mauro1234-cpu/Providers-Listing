@@ -8,7 +8,7 @@ const inputVariants = tv({
   slots: {
     container: "relative flex w-full flex-col gap-1.5",
     input:
-      "flex w-full rounded-md border border-border-default-default px-3 py-1 text-base text-text-default-default transition-colors placeholder:text-text-default-tertiary focus-visible:outline-border-brand-default disabled:cursor-not-allowed disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled md:text-sm",
+      "focus-visible:outline-border-brand-default flex w-full rounded-md border border-border-default-default px-3 py-1 text-base text-text-default-default transition-colors placeholder:text-text-default-tertiary disabled:cursor-not-allowed disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled md:text-sm",
     wrapper: "relative flex flex-row items-center rounded-md",
     leftIcon:
       "pointer-events-none absolute top-1/2 left-2 flex -translate-y-1/2 items-center text-text-default-default",
@@ -37,6 +37,11 @@ const inputVariants = tv({
       [SIZE.LARGE]: { input: "pr-10" },
       [SIZE.X_LARGE]: { input: "pr-11" },
     },
+    error: {
+      true: {
+        input: "border-border-danger-tertiary text-text-danger-tertiary",
+      },
+    },
   },
 });
 
@@ -47,12 +52,14 @@ type InputProps = {
   left?: ReactNode;
   right?: ReactNode;
   size?: Size;
+  error?: boolean;
 } & Omit<ComponentProps<"input">, "size"> &
   Styled;
 
 export const Input = ({
   className,
   containerClassName,
+  error,
   left,
   right,
   size = SIZE.MEDIUM,
@@ -73,6 +80,7 @@ export const Input = ({
             size,
             left: left ? size : undefined,
             right: right ? size : undefined,
+            error,
           })}
           {...props}
         />
