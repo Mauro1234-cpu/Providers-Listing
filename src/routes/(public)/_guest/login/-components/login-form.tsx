@@ -30,7 +30,8 @@ export const LoginForm = () => {
 
   const onSubmit: SubmitHandler<LoginPayload> = (data) => {
     loginMutation.mutate(data, {
-      onSuccess: async ({ data: { authToken } }) => {
+      onSuccess: async ({ data: responseData }) => {
+        const { authToken } = responseData.data;
         toast.success(t("login.success"));
         setAuthStoreToken(authToken);
         await router.invalidate();
@@ -43,11 +44,15 @@ export const LoginForm = () => {
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
         <Label htmlFor="email">{t("form.email")}</Label>
 
-        <Input {...register("email")} />
+        <Input
+          error={!!errors?.email?.message}
+          {...register("email")}
+          placeholder={t("form.email")}
+        />
 
         <ErrorMessage errorMessage={errors?.email?.message} />
       </div>
@@ -55,28 +60,30 @@ export const LoginForm = () => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <Label htmlFor="password">{t("form.password")}</Label>
-
-          <Link
-            className="ml-auto inline-block text-sm underline-offset-4 hover:underline hover:opacity-80"
-            to="/"
-          >
-            {t("login.forgotYourPassword")}
-          </Link>
         </div>
 
-        <PasswordInput {...register("password")} />
+        <PasswordInput
+          error={!!errors?.password?.message}
+          {...register("password")}
+          placeholder={t("form.password")}
+        />
 
         <ErrorMessage errorMessage={errors?.password?.message} />
       </div>
 
-      <Button className="w-full" type="submit">
+      <Button className="h-10 w-full" type="submit">
         {t("login.login")}
       </Button>
 
       <p className="text-center text-sm">
         <Trans
           components={{
-            Link: <Link className="underline underline-offset-4 hover:opacity-80" to="/register" />,
+            Link: (
+              <Link
+                className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
+                to="/register"
+              />
+            ),
           }}
           i18nKey="login.noAccount"
         />
