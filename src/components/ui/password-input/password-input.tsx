@@ -1,34 +1,59 @@
 import { type ComponentProps, useState } from "react";
+import { tv } from "tailwind-variants";
 
 import { Button, Icons } from "@/components";
 import { Input } from "../input";
 
-export const PasswordInput = (props: ComponentProps<typeof Input>) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+type PasswordInputProps = ComponentProps<typeof Input> & {
+  error?: boolean;
+};
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prev) => {
-      return !prev;
-    });
-  };
+const PasswordInputVariants = tv({
+  slots: {
+    input: "",
+    icon: "cursor-pointer",
+  },
+  variants: {
+    error: {
+      true: {
+        input: "border-border-danger-tertiary text-text-danger-tertiary",
+      },
+    },
+    show: {
+      false: {
+        icon: "hidden",
+      },
+    },
+  },
+});
+
+const { icon, input } = PasswordInputVariants();
+
+export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
 
   return (
     <Input
+      className={input({ error })}
+      onBlurCapture={() => {
+        setShowIcon(false);
+      }}
+      onFocusCapture={() => {
+        setShowIcon(true);
+      }}
       right={
         <Button
-          className="cursor-pointer"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              togglePasswordVisibility();
-            }
-          }}
+          className={icon({ show: showIcon })}
           onMouseDown={(e) => {
             e.preventDefault();
-            togglePasswordVisibility();
+            setIsPasswordVisible((prev) => {
+              return !prev;
+            });
           }}
           variant="plainText"
         >
-          {isPasswordVisible ? <Icons.Eye /> : <Icons.EyeOff />}
+          {isPasswordVisible ? <Icons.Eye error={error} /> : <Icons.EyeOff error={error} />}
         </Button>
       }
       type={isPasswordVisible ? "text" : "password"}
