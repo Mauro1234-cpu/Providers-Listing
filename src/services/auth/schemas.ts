@@ -7,9 +7,12 @@ export const getLoginPayloadSchema = () => {
     email: z.email({
       message: i18n.t("form.errors.invalidField", { field: i18n.t("form.email") }),
     }),
-    password: z.string().min(6, {
-      message: i18n.t("form.errors.minLength", { field: i18n.t("form.password"), length: 6 }),
-    }),
+    password: z
+      .string()
+      .trim()
+      .min(6, {
+        message: i18n.t("form.errors.minLength", { field: i18n.t("form.password"), length: 6 }),
+      }),
   });
 };
 
