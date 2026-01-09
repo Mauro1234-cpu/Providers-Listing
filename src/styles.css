@@ -301,12 +301,12 @@ code {
   --color-background-warning-tertiary-hover: var(--orange-200);
 
   --color-border-default-default: var(--gray-200);
+  --color-border-brand-default: var(--primary-800);
 
   --color-border-danger-default: var(--red-700);
   --color-border-danger-secondary: var(--red-600);
   --color-border-danger-tertiary: var(--red-500);
 
-  --color-border-default-default: var(--gray-300);
   --color-border-default-secondary: var(--gray-500);
   --color-border-default-tertiary: var(--gray-700);
 
