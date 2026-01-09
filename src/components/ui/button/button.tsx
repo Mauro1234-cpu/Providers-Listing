@@ -16,7 +16,7 @@ export const buttonVariants = tv({
       tertiary:
         "bg-background-brand-tertiary text-text-brand-on-brand-tertiary hover:bg-background-brand-tertiary-hover active:bg-background-brand-tertiary disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
       outlined:
-        "border-border-brand-default border bg-transparent text-text-default-default shadow-sm hover:bg-background-default-hover active:bg-transparent disabled:border-border-disabled-default disabled:text-text-disabled-default",
+        "border border-border-brand-default bg-transparent text-text-default-default shadow-sm hover:bg-background-default-hover active:bg-transparent disabled:border-border-disabled-default disabled:text-text-disabled-default",
       elevated:
         "border border-border-default-default bg-transparent text-text-default-default shadow-md hover:bg-background-default-hover active:bg-transparent disabled:border-border-disabled-default disabled:text-text-disabled-default",
       plainText:
