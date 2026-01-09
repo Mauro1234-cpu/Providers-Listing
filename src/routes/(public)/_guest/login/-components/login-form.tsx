@@ -3,16 +3,31 @@ import { Trans, useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useRouter, useSearch } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { tv } from "tailwind-variants";
 
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
 import { getLoginPayloadSchema, type LoginPayload, useLogin } from "@/services";
 import { setAuthStoreToken } from "@/stores";
 import { handleAxiosFieldErrors } from "@/utils";
 
+const loginFormVariants = tv({
+  slots: {
+    spin: "hidden h-5 w-5 animate-spin rounded-full border-3 border-gray-500 border-t-transparent",
+  },
+  variants: {
+    submit: {
+      true: "block",
+    },
+  },
+});
+
+const { spin } = loginFormVariants();
+
 export const LoginForm = () => {
   const { t } = useTranslation();
 
   const loginMutation = useLogin();
+  const isSubmitting = loginMutation.isPending;
 
   const router = useRouter();
   const search = useSearch({ from: "/(public)/_guest/login/" });
@@ -71,7 +86,8 @@ export const LoginForm = () => {
         <ErrorMessage errorMessage={errors?.password?.message} />
       </div>
 
-      <Button className="h-10 w-full" type="submit">
+      <Button className="h-10 w-full" disabled={isSubmitting} type="submit">
+        <div className={spin({ submit: isSubmitting })} />
         {t("login.login")}
       </Button>
 
