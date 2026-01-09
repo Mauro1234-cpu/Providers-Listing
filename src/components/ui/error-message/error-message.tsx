@@ -1,4 +1,4 @@
-type ErrorMessageProps = {
+export type ErrorMessageProps = {
   errorMessage?: string;
 };
 
@@ -7,5 +7,9 @@ export const ErrorMessage = ({ errorMessage }: ErrorMessageProps) => {
     return null;
   }
 
-  return <p className="mt-2 text-sm text-red-600">{errorMessage}</p>;
+  return (
+    <p className="text-xs leading-4 font-light text-text-danger-on-danger-tertiary">
+      {errorMessage}
+    </p>
+  );
 };
