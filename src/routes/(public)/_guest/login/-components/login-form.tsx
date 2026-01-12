@@ -99,17 +99,19 @@ export const LoginForm = () => {
       </Button>
 
       <p className="text-center text-sm">
-        <Trans
-          components={{
-            Link: (
-              <Link
-                className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
-                to={ROUTES.REGISTER}
-              />
-            ),
-          }}
-          i18nKey="login.noAccount"
-        />
+        <u>
+          <Trans
+            components={{
+              Link: (
+                <Link
+                  className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
+                  to={ROUTES.REGISTER}
+                />
+              ),
+            }}
+            i18nKey="login.noAccount"
+          />
+        </u>
       </p>
     </form>
   );
