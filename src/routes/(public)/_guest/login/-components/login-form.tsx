@@ -12,7 +12,7 @@ import { handleAxiosFieldErrors } from "@/utils";
 
 const loginFormVariants = tv({
   slots: {
-    spin: "hidden h-5 w-5 animate-spin rounded-full border-3 border-gray-500 border-t-transparent",
+    spin: "hidden size-5 animate-spin rounded-full border-3 border-gray-500 border-t-transparent",
   },
   variants: {
     submit: {
