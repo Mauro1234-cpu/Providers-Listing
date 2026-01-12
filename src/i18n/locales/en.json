@@ -20,17 +20,18 @@
   "form": {
     "email": "Email",
     "password": "Password",
-    "name": "Name",
-    "confirmPassword": "Confirm Password",
+    "name": "Full name",
+    "passwordConfirm": "Confirm Password",
     "passwordMustInclude": "Password must include",
     "errors": {
       "required": "{field} is required.",
       "invalidField": "Please enter a valid {field}.",
-      "minLength": "{field} should contain at least {length} characters.",
+      "minLength": "{field} must be at least {length} characters long.",
       "containsNumber": "{field} must contain at least one number.",
-      "passwordMismatch": "Passwords don't match.",
+      "passwordMismatch": "Passwords do not match",
       "passwordTooWeak": "Password is too weak.",
-      "containsLetter": "{field} must contain at least one letter."
+      "containsLetter": "{field} must contain at least one letter.",
+      "confirm": "Please confirm your password"
     }
   },
   "login": {
@@ -46,6 +47,15 @@
     "logOut": "Log out",
     "areYouSureYouWantToLogout": "Are you sure you want to logout?",
     "youWillLoseYourChanges": "You will lose your changes!"
+  },
+  "register": {
+    "description": "Enter your information to create a new account",
+    "register": "Create account",
+    "existAccount": "<Link>Already have an account? Log in</Link>",
+    "error": "Not able to register",
+    "success": "You’re all set!",
+    "successDesc": "Your account was successfully created."
+
   },
   "users": {
     "title": "Users Information",
