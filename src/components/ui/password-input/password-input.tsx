@@ -5,7 +5,7 @@ import { Button, Icons } from "@/components";
 import { Input } from "../input";
 
 type PasswordInputProps = ComponentProps<typeof Input> & {
-  error?: boolean;
+  isError?: boolean;
 };
 
 const passwordInputVariants = tv({
@@ -14,7 +14,7 @@ const passwordInputVariants = tv({
     icon: "cursor-pointer",
   },
   variants: {
-    error: {
+    isError: {
       true: {
         input:
           "border-border-danger-tertiary text-text-danger-tertiary focus:border-border-danger-tertiary focus:outline-none",
@@ -30,13 +30,13 @@ const passwordInputVariants = tv({
 
 const { icon, input } = passwordInputVariants();
 
-export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
+export const PasswordInput = ({ isError, ...props }: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
 
   return (
     <Input
-      className={input({ error })}
+      className={input({ isError })}
       onBlurCapture={() => {
         setShowIcon(false);
       }}
@@ -54,7 +54,7 @@ export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
           }}
           variant="plainText"
         >
-          {isPasswordVisible ? <Icons.Eye error={error} /> : <Icons.EyeOff error={error} />}
+          {isPasswordVisible ? <Icons.Eye error={isError} /> : <Icons.EyeOff error={isError} />}
         </Button>
       }
       type={isPasswordVisible ? "text" : "password"}
