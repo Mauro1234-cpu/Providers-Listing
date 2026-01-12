@@ -8,7 +8,7 @@ type PasswordInputProps = ComponentProps<typeof Input> & {
   error?: boolean;
 };
 
-const PasswordInputVariants = tv({
+const passwordInputVariants = tv({
   slots: {
     input: "focus:border-border-brand-default focus:outline-none",
     icon: "cursor-pointer",
@@ -28,7 +28,7 @@ const PasswordInputVariants = tv({
   },
 });
 
-const { icon, input } = PasswordInputVariants();
+const { icon, input } = passwordInputVariants();
 
 export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
