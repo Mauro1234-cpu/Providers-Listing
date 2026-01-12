@@ -21,13 +21,18 @@ const loginFormVariants = tv({
   },
 });
 
+export const ROUTES = {
+  REGISTER: "/register",
+  LOGIN: "/login",
+  HOME: "/",
+};
+
 const { spin } = loginFormVariants();
 
 export const LoginForm = () => {
   const { t } = useTranslation();
 
   const loginMutation = useLogin();
-  const isSubmitting = loginMutation.isPending;
 
   const router = useRouter();
   const search = useSearch({ from: "/(public)/_guest/login/" });
@@ -43,6 +48,8 @@ export const LoginForm = () => {
     resolver: zodResolver(getLoginPayloadSchema()),
   });
 
+  const errorMessage = errors;
+
   const onSubmit: SubmitHandler<LoginPayload> = (data) => {
     loginMutation.mutate(data, {
       onSuccess: async ({ data: responseData }) => {
@@ -50,7 +57,7 @@ export const LoginForm = () => {
         toast.success(t("login.success"));
         setAuthStoreToken(authToken);
         await router.invalidate();
-        await navigate({ to: search.redirect || "/" });
+        await navigate({ to: search.redirect || ROUTES.HOME });
       },
       onError: (error) => {
         handleAxiosFieldErrors<LoginPayload>(error, setError, t("login.error"));
@@ -59,7 +66,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
         <Label htmlFor="email">{t("form.email")}</Label>
 
@@ -69,7 +76,7 @@ export const LoginForm = () => {
           placeholder={t("form.email")}
         />
 
-        <ErrorMessage errorMessage={errors?.email?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -83,11 +90,11 @@ export const LoginForm = () => {
           placeholder={t("form.password")}
         />
 
-        <ErrorMessage errorMessage={errors?.password?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.password?.message}</ErrorMessage>}
       </div>
 
-      <Button className="h-10 w-full" disabled={isSubmitting} type="submit">
-        <div className={spin({ submit: isSubmitting })} />
+      <Button className="h-10 w-full" disabled={loginMutation.isPending} type="submit">
+        <div className={spin({ submit: loginMutation.isPending })} />
         {t("login.login")}
       </Button>
 
@@ -97,7 +104,7 @@ export const LoginForm = () => {
             Link: (
               <Link
                 className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
-                to="/register"
+                to={ROUTES.REGISTER}
               />
             ),
           }}
