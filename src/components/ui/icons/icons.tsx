@@ -49,7 +49,7 @@ const iconsVariants = tv({
       [SIZE.LARGE]: { wrapper: "size-9" },
       [SIZE.X_LARGE]: { wrapper: "size-10" },
     },
-    error: {
+    isError: {
       true: {
         icon: "text-icon-danger-tertiary",
       },
@@ -60,17 +60,17 @@ const iconsVariants = tv({
 const { icon, wrapper } = iconsVariants();
 
 type IconifyIconProps = {
-  error?: boolean;
+  isError?: boolean;
 } & Omit<IconProps, "icon">;
 
 const iconifyIcons = Object.fromEntries(
   Object.entries(AVAILABLE_ICONIFY_ICONS).map(([key, value]) => {
     return [
       key,
-      ({ className, error, ...rest }: IconifyIconProps) => {
+      ({ className, isError, ...rest }: IconifyIconProps) => {
         return (
           <Icon
-            className={icon({ className, error })}
+            className={icon({ className, isError })}
             icon={`${LUCIDE_PREFIX}${value}`}
             {...rest}
           />
@@ -85,7 +85,6 @@ export const Icons = { ...iconifyIcons } as const;
 type IconWrapperProps<TElement extends ElementType> = {
   size?: Size;
   as?: TElement;
-  error?: boolean;
 } & Styled &
   PropsWithChildren;
 

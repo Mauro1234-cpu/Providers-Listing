@@ -54,7 +54,7 @@ export const PasswordInput = ({ isError, ...props }: PasswordInputProps) => {
           }}
           variant="plainText"
         >
-          {isPasswordVisible ? <Icons.Eye error={isError} /> : <Icons.EyeOff error={isError} />}
+          {isPasswordVisible ? <Icons.Eye isError={isError} /> : <Icons.EyeOff isError={isError} />}
         </Button>
       }
       type={isPasswordVisible ? "text" : "password"}
