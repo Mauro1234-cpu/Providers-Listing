@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants";
 import type { Styled } from "@/types/styles";
 
 const labelVariants = tv({
-  base: "mb-1 text-sm leading-5 leading-none font-medium text-text-default-default peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  base: "mb-1 text-sm leading-5 font-normal text-text-default-default",
 });
 
 type LabelProps = ComponentProps<typeof LabelPrimitive.Root> & Styled;
