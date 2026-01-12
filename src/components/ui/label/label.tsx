@@ -10,6 +10,6 @@ const labelVariants = tv({
 
 type LabelProps = ComponentProps<typeof LabelPrimitive.Root> & Styled;
 
-export const Label = ({ ...props }: LabelProps) => {
+export const Label = (props: LabelProps) => {
   return <LabelPrimitive.Root className={labelVariants()} {...props} />;
 };
