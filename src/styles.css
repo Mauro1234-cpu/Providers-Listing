@@ -399,9 +399,9 @@ code {
 
   --color-text-default-default: var(--brand-950);
   --color-text-default-secondary: var(--brand-800);
-  --color-text-default-tertiary: var();
+  --color-text-default-tertiary: var(--gray-800);
 
-  --color-text-disabled-default: var(--brand-300);
+  --color-text-disabled-default: var(--gray-500);
   --color-text-disabled-on-disabled: var(--brand-300);
 
   --color-text-information-default: var(--blue-800);
