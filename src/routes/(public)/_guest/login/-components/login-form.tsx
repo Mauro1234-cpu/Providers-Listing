@@ -21,12 +21,6 @@ const loginFormVariants = tv({
   },
 });
 
-export const ROUTES = {
-  REGISTER: "/register",
-  LOGIN: "/login",
-  HOME: "/",
-};
-
 const { spin } = loginFormVariants();
 
 export const LoginForm = () => {
@@ -57,7 +51,7 @@ export const LoginForm = () => {
         toast.success(t("login.success"));
         setAuthStoreToken(authToken);
         await router.invalidate();
-        await navigate({ to: search.redirect || ROUTES.HOME });
+        await navigate({ to: search.redirect || "/" });
       },
       onError: (error) => {
         handleAxiosFieldErrors<LoginPayload>(error, setError, t("login.error"));
@@ -105,7 +99,7 @@ export const LoginForm = () => {
               Link: (
                 <Link
                   className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
-                  to={ROUTES.REGISTER}
+                  to="/register"
                 />
               ),
             }}
