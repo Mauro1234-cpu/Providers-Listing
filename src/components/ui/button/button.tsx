@@ -3,12 +3,11 @@ import { Slot } from "@radix-ui/react-slot";
 import { tv, type VariantProps } from "tailwind-variants";
 
 import type { Styled } from "@/types/styles";
+import { Spinner } from "../spin";
 
 export const buttonVariants = tv({
   slots: {
     base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-    spin: "flex size-5 animate-spin items-center justify-center rounded-full bg-conic-360 from-background-base-tertiary-hover/0 to-background-base-tertiary-hover",
-    circle: "size-3 rounded-full bg-background-disabled-default",
   },
   variants: {
     variant: {
@@ -38,7 +37,7 @@ export const buttonVariants = tv({
   },
 });
 
-const { base, circle, spin } = buttonVariants();
+const { base } = buttonVariants();
 
 export type ButtonProps = {
   asChild?: boolean;
@@ -68,11 +67,7 @@ export const Button = ({
       type="button"
       {...props}
     >
-      {isLoading ? (
-        <div className={spin()}>
-          <p className={circle()} />
-        </div>
-      ) : null}
+      {isLoading ? <Spinner /> : null}
       {children}
     </button>
   );
