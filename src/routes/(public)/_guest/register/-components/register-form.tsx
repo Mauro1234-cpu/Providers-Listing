@@ -116,7 +116,7 @@ export const RegisterForm = () => {
         <ErrorMessage errorMessage={errors?.passwordConfirm?.message} />
       </div>
 
-      <Button disabled={isSubmitting} type="submit">
+      <Button disabled={isSubmitting} isErrors={!!errors} type="submit">
         <div className={spin({ submit: isSubmitting })} />
         {t("register.register")}
       </Button>

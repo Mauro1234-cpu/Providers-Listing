@@ -6,11 +6,13 @@ import { Icons } from "@/components";
 import type { Styled } from "@/types/styles";
 
 export const buttonVariants = tv({
-  base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  slots: {
+    base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  },
   variants: {
     variant: {
       primary:
-        "bg-background-brand-default text-text-brand-on-brand hover:bg-background-brand-hover active:bg-background-brand-default disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
+        "bg-background-brand-default text-text-brand-on-brand hover:bg-background-brand-hover active:bg-background-brand-default",
       secondary:
         "bg-background-brand-secondary text-text-brand-on-brand-secondary hover:bg-background-brand-secondary-hover active:bg-background-brand-secondary disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
       tertiary:
@@ -28,12 +30,17 @@ export const buttonVariants = tv({
       lg: "px-3 py-2 text-lg",
       icon: "p-3",
     },
+    isErrors: {
+      true: "disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
+    },
   },
   defaultVariants: {
     variant: "primary",
     size: "default",
   },
 });
+
+const { base } = buttonVariants();
 
 export type ButtonProps = {
   asChild?: boolean;
@@ -47,18 +54,19 @@ export const Button = ({
   children,
   className,
   disabled,
+  isErrors,
   isLoading = false,
   size,
   variant,
   ...props
 }: ButtonProps) => {
   return asChild ? (
-    <Slot className={buttonVariants({ variant, size, className })} {...props}>
+    <Slot className={base({ variant, size, className })} {...props}>
       {children}
     </Slot>
   ) : (
     <button
-      className={buttonVariants({ variant, size, className })}
+      className={base({ variant, size, className, isErrors })}
       disabled={isLoading || disabled}
       type="button"
       {...props}
