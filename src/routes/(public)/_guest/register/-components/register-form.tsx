@@ -121,7 +121,7 @@ export const RegisterForm = () => {
         {t("register.register")}
       </Button>
 
-      <p className="text-center text-sm text-text-default-tertiary">
+      <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
         <Trans
           components={{
             Link: (
