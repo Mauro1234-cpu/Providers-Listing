@@ -10,7 +10,7 @@ export const buttonVariants = tv({
   variants: {
     variant: {
       primary:
-        "bg-background-brand-default text-text-brand-on-brand hover:bg-background-brand-hover active:bg-background-brand-default disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
+        "bg-background-brand-default text-text-brand-on-brand hover:bg-background-brand-hover disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
       secondary:
         "bg-background-brand-secondary text-text-brand-on-brand-secondary hover:bg-background-brand-secondary-hover active:bg-background-brand-secondary disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
       tertiary:
