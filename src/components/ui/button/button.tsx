@@ -7,7 +7,8 @@ import type { Styled } from "@/types/styles";
 export const buttonVariants = tv({
   slots: {
     base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-    spin: "size-5 animate-spin rounded-full border-4 border-background-base-tertiary-hover/20 border-t-background-base-tertiary-hover",
+    spin: "flex size-5 animate-spin items-center justify-center rounded-full bg-conic-360 from-background-base-tertiary-hover/0 to-background-base-tertiary-hover",
+    circle: "size-3 rounded-full bg-background-disabled-default",
   },
   variants: {
     variant: {
@@ -33,12 +34,11 @@ export const buttonVariants = tv({
   },
   defaultVariants: {
     variant: "primary",
-    active: "secondary",
     size: "default",
   },
 });
 
-const { base, spin } = buttonVariants();
+const { base, circle, spin } = buttonVariants();
 
 export type ButtonProps = {
   asChild?: boolean;
@@ -68,7 +68,11 @@ export const Button = ({
       type="button"
       {...props}
     >
-      {isLoading ? <div className={spin()} /> : null}
+      {isLoading ? (
+        <div className={spin()}>
+          <p className={circle()} />
+        </div>
+      ) : null}
       {children}
     </button>
   );
