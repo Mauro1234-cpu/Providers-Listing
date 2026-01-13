@@ -7,7 +7,7 @@ import type { Styled } from "@/types/styles";
 
 export const buttonVariants = tv({
   slots: {
-    base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+    base: "inline-flex cursor-pointer items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all duration-300 ease-in-out focus-visible:ring-4 focus-visible:ring-background-brand-default/25 focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   },
   variants: {
     variant: {
@@ -30,9 +30,6 @@ export const buttonVariants = tv({
       lg: "px-3 py-2 text-lg",
       icon: "p-3",
     },
-    isErrors: {
-      true: "disabled:bg-background-disabled-default disabled:text-text-disabled-on-disabled",
-    },
   },
   defaultVariants: {
     variant: "primary",
@@ -54,8 +51,7 @@ export const Button = ({
   children,
   className,
   disabled,
-  isErrors,
-  isLoading = false,
+  isLoading,
   size,
   variant,
   ...props
@@ -66,8 +62,8 @@ export const Button = ({
     </Slot>
   ) : (
     <button
-      className={base({ variant, size, className, isErrors })}
-      disabled={isLoading || disabled}
+      className={base({ variant, size, className })}
+      disabled={disabled || isLoading}
       type="button"
       {...props}
     >

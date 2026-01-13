@@ -34,7 +34,7 @@ export const RegisterForm = () => {
   const navigate = useNavigate();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     register,
     setError,
@@ -57,6 +57,8 @@ export const RegisterForm = () => {
       },
     });
   };
+
+  console.log(!isValid);
 
   return (
     <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)}>
@@ -115,8 +117,7 @@ export const RegisterForm = () => {
 
         <ErrorMessage errorMessage={errors?.passwordConfirm?.message} />
       </div>
-
-      <Button disabled={isSubmitting} isErrors={!!errors} type="submit">
+      <Button disabled={!isValid} isLoading={isSubmitting} type="submit">
         <div className={spin({ submit: isSubmitting })} />
         {t("register.register")}
       </Button>
