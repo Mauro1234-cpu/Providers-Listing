@@ -128,17 +128,19 @@ export const RegisterForm = () => {
       </Button>
 
       <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
-        <Trans
-          components={{
-            Link: (
-              <Link
-                className="text-sm leading-5 underline underline-offset-4 hover:opacity-80"
-                to="/login"
-              />
-            ),
-          }}
-          i18nKey="register.existAccount"
-        />
+        <u>
+          <Trans
+            components={{
+              Link: (
+                <Link
+                  className="text-sm leading-5 underline underline-offset-4 hover:opacity-80"
+                  to="/login"
+                />
+              ),
+            }}
+            i18nKey="register.existAccount"
+          />
+        </u>
       </p>
     </form>
   );

@@ -51,7 +51,7 @@
   "register": {
     "description": "Enter your information to create a new account",
     "register": "Create account",
-    "existAccount": "<Link>Already have an account? Log in</Link>",
+    "existAccount": "Already have an account? Log in",
     "error": "Not able to register",
     "success": "You’re all set!",
     "successDesc": "Your account was successfully created.",
