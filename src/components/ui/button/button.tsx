@@ -26,7 +26,7 @@ export const buttonVariants = tv({
     },
     size: {
       sm: "px-1.5 py-1 text-xs md:px-2 md:py-1.5 md:text-sm",
-      default: "w-full px-1.5 py-1 text-lg md:px-2 md:py-1.5 md:text-base",
+      default: "px-1.5 py-1 text-lg md:px-2 md:py-1.5 md:text-base",
       lg: "px-3 py-2 text-lg",
       icon: "p-3",
     },
