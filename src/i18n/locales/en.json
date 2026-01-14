@@ -39,7 +39,7 @@
     "description": "Enter your email and password to access your account",
     "forgotYourPassword": "Forgot your password?",
     "login": "Log in",
-    "noAccount": "<Link>Don't have an account? Sign up</Link>",
+    "noAccount": "Don't have an account? Sign up",
     "error": "Not able to log in",
     "success": "Logged in successfully"
   },

@@ -37,6 +37,8 @@ export const CreateUserDialog = ({ isOpen, onOpenChange }: CreateUserDialogProps
     resolver: zodResolver(getCreateUserSchema()),
   });
 
+  const errorMessage = errors;
+
   const onSubmit: SubmitHandler<CreateUser> = (data) => {
     return createUser(data, {
       onSuccess: () => {
@@ -73,7 +75,7 @@ export const CreateUserDialog = ({ isOpen, onOpenChange }: CreateUserDialogProps
 
             <Input {...register("name")} id="name" size="sm" />
 
-            <ErrorMessage errorMessage={errors?.name?.message} />
+            {!!errorMessage && <ErrorMessage>{errors?.name?.message}</ErrorMessage>}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -81,7 +83,7 @@ export const CreateUserDialog = ({ isOpen, onOpenChange }: CreateUserDialogProps
 
             <Input {...register("emailAddress")} id="emailAddress" size="sm" />
 
-            <ErrorMessage errorMessage={errors?.emailAddress?.message} />
+            {!!errorMessage && <ErrorMessage>{errors?.emailAddress?.message}</ErrorMessage>}
           </div>
 
           <div className="flex flex-col gap-2">
@@ -89,7 +91,7 @@ export const CreateUserDialog = ({ isOpen, onOpenChange }: CreateUserDialogProps
 
             <PasswordInput {...register("password")} id="password" size="sm" />
 
-            <ErrorMessage errorMessage={errors?.password?.message} />
+            {!!errorMessage && <ErrorMessage>{errors?.password?.message}</ErrorMessage>}
 
             <PasswordValidator control={control} name="password" />
           </div>
@@ -103,7 +105,7 @@ export const CreateUserDialog = ({ isOpen, onOpenChange }: CreateUserDialogProps
               size="sm"
             />
 
-            <ErrorMessage errorMessage={errors?.passwordConfirmation?.message} />
+            {!!errorMessage && <ErrorMessage>{errors?.passwordConfirmation?.message}</ErrorMessage>}
           </div>
 
           <Dialog.Footer>

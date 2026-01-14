@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,14 +28,15 @@ export const LoginForm = () => {
   const { t } = useTranslation();
 
   const loginMutation = useLogin();
-  const isSubmitting = loginMutation.isPending;
 
   const router = useRouter();
   const search = useSearch({ from: "/(public)/_guest/login/" });
   const navigate = useNavigate();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     register,
     setError,
@@ -43,7 +45,18 @@ export const LoginForm = () => {
     resolver: zodResolver(getLoginPayloadSchema()),
   });
 
-  const onSubmit: SubmitHandler<LoginPayload> = (data) => {
+  const errorMessage = errors;
+
+  const sleep = (milliseconds: number) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    });
+  };
+
+  const onSubmit: SubmitHandler<LoginPayload> = async (data) => {
+    setIsSubmitting(true);
+    await sleep(2000);
+
     loginMutation.mutate(data, {
       onSuccess: async ({ data: responseData }) => {
         const { authToken } = responseData.data;
@@ -53,13 +66,14 @@ export const LoginForm = () => {
         await navigate({ to: search.redirect || "/" });
       },
       onError: (error) => {
+        setIsSubmitting(false);
         handleAxiosFieldErrors<LoginPayload>(error, setError, t("login.error"));
       },
     });
   };
 
   return (
-    <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
         <Label htmlFor="email">{t("form.email")}</Label>
 
@@ -69,7 +83,7 @@ export const LoginForm = () => {
           placeholder={t("form.email")}
         />
 
-        <ErrorMessage errorMessage={errors?.email?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -83,26 +97,27 @@ export const LoginForm = () => {
           placeholder={t("form.password")}
         />
 
-        <ErrorMessage errorMessage={errors?.password?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.password?.message}</ErrorMessage>}
       </div>
-
-      <Button className="h-10 w-full" disabled={isSubmitting} type="submit">
+      <Button disabled={!isValid} isLoading={isSubmitting} type="submit">
         <div className={spin({ submit: isSubmitting })} />
         {t("login.login")}
       </Button>
 
-      <p className="text-center text-sm">
-        <Trans
-          components={{
-            Link: (
-              <Link
-                className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
-                to="/register"
-              />
-            ),
-          }}
-          i18nKey="login.noAccount"
-        />
+      <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
+        <u>
+          <Trans
+            components={{
+              Link: (
+                <Link
+                  className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
+                  to="/register"
+                />
+              ),
+            }}
+            i18nKey="login.noAccount"
+          />
+        </u>
       </p>
     </form>
   );

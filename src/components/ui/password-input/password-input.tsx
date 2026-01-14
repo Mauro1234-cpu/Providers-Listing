@@ -5,16 +5,16 @@ import { Button, Icons } from "@/components";
 import { Input } from "../input";
 
 type PasswordInputProps = ComponentProps<typeof Input> & {
-  error?: boolean;
+  isError?: boolean;
 };
 
-const PasswordInputVariants = tv({
+const passwordInputVariants = tv({
   slots: {
     input: "focus:border-border-brand-default focus:outline-none",
     icon: "cursor-pointer",
   },
   variants: {
-    error: {
+    isError: {
       true: {
         input:
           "border-border-danger-tertiary text-text-danger-tertiary focus:border-border-danger-tertiary focus:outline-none",
@@ -28,15 +28,15 @@ const PasswordInputVariants = tv({
   },
 });
 
-const { icon, input } = PasswordInputVariants();
+const { icon, input } = passwordInputVariants();
 
-export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
+export const PasswordInput = ({ isError, ...props }: PasswordInputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [showIcon, setShowIcon] = useState(false);
 
   return (
     <Input
-      className={input({ error })}
+      className={input({ isError })}
       onBlurCapture={() => {
         setShowIcon(false);
       }}
@@ -54,7 +54,7 @@ export const PasswordInput = ({ error, ...props }: PasswordInputProps) => {
           }}
           variant="plainText"
         >
-          {isPasswordVisible ? <Icons.Eye error={error} /> : <Icons.EyeOff error={error} />}
+          {isPasswordVisible ? <Icons.Eye isError={isError} /> : <Icons.EyeOff isError={isError} />}
         </Button>
       }
       type={isPasswordVisible ? "text" : "password"}

@@ -200,7 +200,7 @@ code {
 @theme inline {
   --radius: 0.5rem;
 
-  --color-background-brand-default: var(--brand-900);
+  --color-background-brand-default: var(--primary-900);
   --color-background-brand-hover: var(--primary-950);
   --color-background-brand-secondary: var(--primary-200);
   --color-background-brand-secondary-hover: var(--primary-300);
@@ -260,7 +260,7 @@ code {
 
   --color-background-default-default: var(--white-950);
   --color-background-default-hover: var(--gray-100);
-  --color-background-default-secondary: var(--gray-100);
+  --color-background-default-secondary: var(--gray-800);
   --color-background-default-secondary-hover: var(--gray-200);
   --color-background-default-tertiary: var(--gray-300);
   --color-background-default-tertiary-hover: var(--gray-400);
@@ -397,9 +397,9 @@ code {
   --color-text-danger-secondary: var(--red-600);
   --color-text-danger-tertiary: var(--red-500);
 
-  --color-text-default-default: var(--brand-950);
-  --color-text-default-secondary: var(--brand-800);
-  --color-text-default-tertiary: var(--gray-800);
+  --color-text-default-default: var(--primary-950);
+  --color-text-default-secondary: var(--gray-800);
+  --color-text-default-tertiary: var();
 
   --color-text-disabled-default: var(--gray-500);
   --color-text-disabled-on-disabled: var(--brand-300);

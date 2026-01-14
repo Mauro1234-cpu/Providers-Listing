@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-background-base-default">
-      <div className="bg- w-80 rounded-2xl border border-border-default-default bg-background-default-default p-5 md:w-115">
+      <div className="flex w-80 flex-col gap-7 rounded-2xl border border-border-default-default bg-background-default-default p-5 md:w-115">
         <Header description={t("login.description")} title={t("login.welcome")} />
         <LoginForm />
       </div>
