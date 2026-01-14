@@ -56,7 +56,6 @@
     "success": "You’re all set!",
     "successDesc": "Your account was successfully created.",
     "redirect": "Go to login"
-
   },
   "users": {
     "title": "Users Information",
