@@ -22,7 +22,7 @@ export const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     register,
     setError,
@@ -85,17 +85,12 @@ export const LoginForm = () => {
 
         {!!errorMessage && <ErrorMessage>{errors?.password?.message}</ErrorMessage>}
       </div>
-
-      <Button
-        className="h-10 w-full"
-        disabled={loginMutation.isPending}
-        isLoading={isSubmitting}
-        type="submit"
-      >
+      <Button disabled={!isValid} isLoading={isSubmitting} type="submit">
+        {/* <div className={spin({ submit: isSubmitting })} /> */}
         {t("login.login")}
       </Button>
 
-      <p className="text-center text-sm">
+      <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
         <u>
           <Trans
             components={{
