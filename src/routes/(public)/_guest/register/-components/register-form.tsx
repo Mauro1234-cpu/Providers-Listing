@@ -60,7 +60,7 @@ export const RegisterForm = () => {
         toast.success(t("register.success"));
         setAuthStoreToken(authToken);
         await router.invalidate();
-        await navigate({ to: search.redirect || "/" });
+        await navigate({ to: "/success" });
       },
       onError: (error) => {
         setIsSubmitting(false);

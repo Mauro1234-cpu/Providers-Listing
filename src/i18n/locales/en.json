@@ -54,7 +54,8 @@
     "existAccount": "<Link>Already have an account? Log in</Link>",
     "error": "Not able to register",
     "success": "You’re all set!",
-    "successDesc": "Your account was successfully created."
+    "successDesc": "Your account was successfully created.",
+    "redirect": "Go to login"
 
   },
   "users": {
@@ -105,7 +106,7 @@
       "range": "{from}-{to} from {total}",
       "prev": "Previous page",
       "next": "Next page",
-      "gotoPage": "Go to page {{page}}"
+      "gotoPage": "Go to {{page}}"
     }
   },
   "navigation": {
