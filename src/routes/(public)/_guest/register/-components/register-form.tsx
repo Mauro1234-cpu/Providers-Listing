@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
@@ -128,19 +128,12 @@ export const RegisterForm = () => {
       </Button>
 
       <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
-        <u>
-          <Trans
-            components={{
-              Link: (
-                <Link
-                  className="text-sm leading-5 underline underline-offset-4 hover:opacity-80"
-                  to="/login"
-                />
-              ),
-            }}
-            i18nKey="register.existAccount"
-          />
-        </u>
+        <Link
+          className="text-sm leading-5 underline underline-offset-4 hover:opacity-80"
+          to="/login"
+        >
+          {t("register.existAccount")}
+        </Link>
       </p>
     </form>
   );
