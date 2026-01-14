@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +28,7 @@ export const RegisterForm = () => {
   const { t } = useTranslation();
 
   const registerMutation = useRegister();
-  const isSubmitting = registerMutation.isPending;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
   const search = useSearch({ from: "/(public)/_guest/register/" });
@@ -43,7 +44,16 @@ export const RegisterForm = () => {
     resolver: zodResolver(getRegisterPayloadSchema()),
   });
 
-  const onSubmit: SubmitHandler<RegisterPayload> = (data) => {
+  const errorMessage = errors;
+  const sleep = (milliseconds: number) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, milliseconds);
+    });
+  };
+  const onSubmit: SubmitHandler<RegisterPayload> = async (data) => {
+    setIsSubmitting(true);
+    await sleep(2000);
+
     registerMutation.mutate(data, {
       onSuccess: async ({ data: responseData }) => {
         const { authToken } = responseData.data;
@@ -53,6 +63,7 @@ export const RegisterForm = () => {
         await navigate({ to: search.redirect || "/" });
       },
       onError: (error) => {
+        setIsSubmitting(false);
         handleAxiosFieldErrors<RegisterPayload>(error, setError, t("register.error"));
       },
     });
@@ -67,7 +78,7 @@ export const RegisterForm = () => {
 
         <Input error={!!errors?.name?.message} {...register("name")} placeholder={t("form.name")} />
 
-        <ErrorMessage errorMessage={errors?.name?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.name?.message}</ErrorMessage>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -81,7 +92,7 @@ export const RegisterForm = () => {
           placeholder={t("form.email")}
         />
 
-        <ErrorMessage errorMessage={errors?.email?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -97,7 +108,7 @@ export const RegisterForm = () => {
           placeholder={t("form.password")}
         />
 
-        <ErrorMessage errorMessage={errors?.password?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.password?.message}</ErrorMessage>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -113,7 +124,7 @@ export const RegisterForm = () => {
           placeholder={t("form.passwordConfirm")}
         />
 
-        <ErrorMessage errorMessage={errors?.passwordConfirm?.message} />
+        {!!errorMessage && <ErrorMessage>{errors?.passwordConfirm?.message}</ErrorMessage>}
       </div>
       <Button disabled={!isValid} isLoading={isSubmitting} type="submit">
         <div className={spin({ submit: isSubmitting })} />
