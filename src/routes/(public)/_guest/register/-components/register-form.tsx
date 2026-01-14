@@ -2,13 +2,12 @@ import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate, useRouter, useSearch } from "@tanstack/react-router";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { tv } from "tailwind-variants";
 
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
 import { getRegisterPayloadSchema, type RegisterPayload, useRegister } from "@/services";
-import { setAuthStoreToken } from "@/stores";
 import { handleAxiosFieldErrors } from "@/utils";
 
 const registerFormVariants = tv({
@@ -31,7 +30,6 @@ export const RegisterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
-  const search = useSearch({ from: "/(public)/_guest/register/" });
   const navigate = useNavigate();
 
   const {
@@ -55,10 +53,8 @@ export const RegisterForm = () => {
     await sleep(2000);
 
     registerMutation.mutate(data, {
-      onSuccess: async ({ data: responseData }) => {
-        const { authToken } = responseData.data;
+      onSuccess: async () => {
         toast.success(t("register.success"));
-        setAuthStoreToken(authToken);
         await router.invalidate();
         await navigate({ to: "/success" });
       },
@@ -120,11 +116,11 @@ export const RegisterForm = () => {
 
         <PasswordInput
           error={!!errors?.password?.message}
-          {...register("passwordConfirm")}
+          {...register("password_confirmation")}
           placeholder={t("form.passwordConfirm")}
         />
 
-        {!!errorMessage && <ErrorMessage>{errors?.passwordConfirm?.message}</ErrorMessage>}
+        {!!errorMessage && <ErrorMessage>{errors?.password_confirmation?.message}</ErrorMessage>}
       </div>
       <Button disabled={!isValid} isLoading={isSubmitting} type="submit">
         <div className={spin({ submit: isSubmitting })} />
