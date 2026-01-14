@@ -49,19 +49,32 @@ const iconsVariants = tv({
       [SIZE.LARGE]: { wrapper: "size-9" },
       [SIZE.X_LARGE]: { wrapper: "size-10" },
     },
+    isError: {
+      true: {
+        icon: "text-icon-danger-tertiary",
+      },
+    },
   },
 });
 
 const { icon, wrapper } = iconsVariants();
 
-type IconifyIconProps = Omit<IconProps, "icon">;
+type IconifyIconProps = {
+  isError?: boolean;
+} & Omit<IconProps, "icon">;
 
 const iconifyIcons = Object.fromEntries(
   Object.entries(AVAILABLE_ICONIFY_ICONS).map(([key, value]) => {
     return [
       key,
-      ({ className, ...rest }: IconifyIconProps) => {
-        return <Icon className={icon({ className })} icon={`${LUCIDE_PREFIX}${value}`} {...rest} />;
+      ({ className, isError, ...rest }: IconifyIconProps) => {
+        return (
+          <Icon
+            className={icon({ className, isError })}
+            icon={`${LUCIDE_PREFIX}${value}`}
+            {...rest}
+          />
+        );
       },
     ];
   }),

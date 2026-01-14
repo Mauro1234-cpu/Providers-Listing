@@ -1,34 +1,60 @@
 import { type ComponentProps, useState } from "react";
+import { tv } from "tailwind-variants";
 
 import { Button, Icons } from "@/components";
 import { Input } from "../input";
 
-export const PasswordInput = (props: ComponentProps<typeof Input>) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+type PasswordInputProps = ComponentProps<typeof Input> & {
+  isError?: boolean;
+};
 
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prev) => {
-      return !prev;
-    });
-  };
+const passwordInputVariants = tv({
+  slots: {
+    input: "focus:border-border-brand-default focus:outline-none",
+    icon: "cursor-pointer",
+  },
+  variants: {
+    isError: {
+      true: {
+        input:
+          "border-border-danger-tertiary text-text-danger-tertiary focus:border-border-danger-tertiary focus:outline-none",
+      },
+    },
+    show: {
+      false: {
+        icon: "hidden",
+      },
+    },
+  },
+});
+
+const { icon, input } = passwordInputVariants();
+
+export const PasswordInput = ({ isError, ...props }: PasswordInputProps) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
 
   return (
     <Input
+      className={input({ isError })}
+      onBlurCapture={() => {
+        setShowIcon(false);
+      }}
+      onFocusCapture={() => {
+        setShowIcon(true);
+      }}
       right={
         <Button
-          className="cursor-pointer"
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              togglePasswordVisibility();
-            }
-          }}
+          className={icon({ show: showIcon })}
           onMouseDown={(e) => {
             e.preventDefault();
-            togglePasswordVisibility();
+            setIsPasswordVisible((prev) => {
+              return !prev;
+            });
           }}
           variant="plainText"
         >
-          {isPasswordVisible ? <Icons.Eye /> : <Icons.EyeOff />}
+          {isPasswordVisible ? <Icons.Eye isError={isError} /> : <Icons.EyeOff isError={isError} />}
         </Button>
       }
       type={isPasswordVisible ? "text" : "password"}

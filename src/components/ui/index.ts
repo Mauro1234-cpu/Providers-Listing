@@ -14,6 +14,7 @@ export * from "./password-input";
 export * from "./password-validator";
 export * from "./radio-group";
 export * from "./select";
+export * from "./spinner";
 export * from "./table";
 export * from "./tabs";
 export * from "./toast";

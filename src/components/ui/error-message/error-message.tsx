@@ -1,11 +1,9 @@
-type ErrorMessageProps = {
-  errorMessage?: string;
-};
+import type { ComponentProps } from "react";
 
-export const ErrorMessage = ({ errorMessage }: ErrorMessageProps) => {
-  if (!errorMessage) {
-    return null;
-  }
+export type ErrorMessageProps = Pick<ComponentProps<"p">, "children">;
 
-  return <p className="mt-2 text-sm text-red-600">{errorMessage}</p>;
+export const ErrorMessage = (props: ErrorMessageProps) => {
+  return (
+    <p className="text-xs leading-4 font-light text-text-danger-on-danger-tertiary" {...props} />
+  );
 };
