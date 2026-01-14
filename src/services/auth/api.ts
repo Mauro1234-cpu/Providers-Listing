@@ -12,7 +12,7 @@ export const login = ({ email, password }: LoginPayload) => {
 };
 
 export const register = ({ email, name, password, passwordConfirm }: RegisterPayload) => {
-  return publicApi.post<ServiceResponse<RegisterResponse>>("auth/register", {
+  return publicApi.post<ServiceResponse<RegisterResponse>>("auth/signup", {
     name,
     email,
     password,
