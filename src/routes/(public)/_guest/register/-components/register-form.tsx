@@ -58,8 +58,6 @@ export const RegisterForm = () => {
     });
   };
 
-  console.log(!isValid);
-
   return (
     <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-2">
