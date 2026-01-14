@@ -11,11 +11,11 @@ export const login = ({ email, password }: LoginPayload) => {
   return publicApi.post<ServiceResponse<LoginResponse>>("auth/login", { email, password });
 };
 
-export const register = ({ email, name, password, passwordConfirm }: RegisterPayload) => {
+export const register = ({ email, name, password, password_confirmation }: RegisterPayload) => {
   return publicApi.post<ServiceResponse<RegisterResponse>>("auth/signup", {
     name,
     email,
     password,
-    passwordConfirm,
+    password_confirmation,
   });
 };

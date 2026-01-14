@@ -47,7 +47,7 @@ export const getRegisterPayloadSchema = () => {
         .min(8, {
           message: i18n.t("form.errors.minLength", { field: i18n.t("form.password"), length: 8 }),
         }),
-      passwordConfirm: z
+      password_confirmation: z
         .string()
         .trim()
         .min(1, {
@@ -62,7 +62,7 @@ export const getRegisterPayloadSchema = () => {
     })
     .refine(
       (data) => {
-        return data.password === data.passwordConfirm;
+        return data.password === data.password_confirmation;
       },
       {
         path: ["passwordConfirm"],
