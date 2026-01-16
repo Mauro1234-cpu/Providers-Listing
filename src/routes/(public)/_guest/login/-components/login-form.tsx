@@ -59,11 +59,10 @@ export const LoginForm = () => {
 
     loginMutation.mutate(data, {
       onSuccess: async ({ data: responseData }) => {
-        const { authToken } = responseData.data;
+        const { accessToken } = responseData.data;
         toast.success(t("login.success"));
-        setAuthStoreToken(authToken);
+        setAuthStoreToken(accessToken);
         await router.invalidate();
-        await navigate({ to: search.redirect || "/" });
       },
       onError: (error) => {
         setIsSubmitting(false);
@@ -79,6 +78,7 @@ export const LoginForm = () => {
 
         <Input
           error={!!errors?.email?.message}
+          value="mauro@gmail.com"
           {...register("email")}
           placeholder={t("form.email")}
         />
@@ -93,6 +93,7 @@ export const LoginForm = () => {
 
         <PasswordInput
           error={!!errors?.password?.message}
+          value="Password1"
           {...register("password")}
           placeholder={t("form.password")}
         />

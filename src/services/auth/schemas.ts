@@ -17,7 +17,7 @@ export const getLoginPayloadSchema = () => {
 };
 
 export const loginResponseSchema = z.object({
-  authToken: z.string(),
+  accessToken: z.string(),
 });
 
 export const getRegisterPayloadSchema = () => {
@@ -70,7 +70,3 @@ export const getRegisterPayloadSchema = () => {
       },
     );
 };
-
-export const registerResponseSchema = z.object({
-  authToken: z.string(),
-});
