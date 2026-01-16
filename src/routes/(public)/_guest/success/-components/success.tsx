@@ -15,7 +15,7 @@ export const Success = () => {
         <div className="flex flex-col items-center text-center md:w-4/5">
           <SuccessAnimation />
           <h2 className="text-3xl">{t("register.success")}</h2>
-          <p className="text-base font-normal">{t("register.successDesc")}</p>
+          <p className="my-1 text-base font-normal">{t("register.successDesc")}</p>
         </div>
       </div>
 

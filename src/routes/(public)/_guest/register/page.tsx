@@ -9,7 +9,7 @@ const RegisterPage = () => {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-background-base-default">
-      <div className="bg w-90 rounded-2xl border border-border-default-default bg-background-default-default px-7 py-5 md:w-120">
+      <div className="w-90 rounded-2xl border border-border-default-default bg-background-default-default px-7 py-5 md:w-120">
         <Header description={t("register.description")} title={t("register.register")} />
         <RegisterForm />
       </div>
