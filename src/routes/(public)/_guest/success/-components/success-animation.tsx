@@ -44,7 +44,7 @@ export const SuccessAnimation = () => {
           cx={75}
           cy={75}
           pathLength={100}
-          r={28}
+          r={35}
           strokeDasharray="440"
           strokeDashoffset="-440"
           strokeLinecap="round"
@@ -55,12 +55,12 @@ export const SuccessAnimation = () => {
           className="animate-complete stroke-text-success-tertiary opacity-0"
           cx={75}
           cy={75}
-          r={28}
+          r={35}
           strokeLinecap="round"
           strokeWidth={1}
         />
 
-        <foreignObject className="animate-check opacity-0" height={45} width={45} x={53} y={53}>
+        <foreignObject className="animate-check opacity-0" height={52} width={52} x={50} y={50}>
           <Icons.Check className="size-full text-background-default-default" strokeWidth={40} />
         </foreignObject>
       </svg>
