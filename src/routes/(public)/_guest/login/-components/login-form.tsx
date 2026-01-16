@@ -78,7 +78,6 @@ export const LoginForm = () => {
 
         <Input
           error={!!errors?.email?.message}
-          value="mauro@gmail.com"
           {...register("email")}
           placeholder={t("form.email")}
         />
@@ -93,7 +92,6 @@ export const LoginForm = () => {
 
         <PasswordInput
           error={!!errors?.password?.message}
-          value="Password1"
           {...register("password")}
           placeholder={t("form.password")}
         />
