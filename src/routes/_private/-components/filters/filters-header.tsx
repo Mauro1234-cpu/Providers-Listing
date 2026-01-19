@@ -1,8 +1,5 @@
-import { useState } from "react";
-
 import { Icons } from "@/components";
-import { useProviders } from "@/hooks/use-providers";
-import type { FiltersHeaderProps, FilterState } from "@/types/filters";
+import type { FiltersHeaderProps } from "@/types/filters";
 import { ProvidersFound } from "./providers-found";
 import { SelectsFields } from "./selects-fields";
 
@@ -10,18 +7,17 @@ import { SelectsFields } from "./selects-fields";
 //     setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
 //   }
 
-export const FiltersHeader = ({ desc, placeholder, textCount, title }: FiltersHeaderProps) => {
-  const [filters, setFilters] = useState<FilterState>({
-    Specialty: "",
-    Gender: "",
-    Clinic: "",
-    search: "",
-  });
-
-  const { countProviders } = useProviders({ filters });
-
+export const FiltersHeader = ({
+  countProviders,
+  desc,
+  filters,
+  placeholder,
+  setFilters,
+  textCount,
+  title,
+}: FiltersHeaderProps) => {
   return (
-    <div className="px-6 pt-3 lg:px-35 lg:pt-6">
+    <div className="pEx-6 pt-3 lg:px-35 lg:pt-6">
       <div>
         <h1 className="text-primary text-2xl font-semibold">{title}</h1>
         <p className="text-tertiary my-1 pr-7 text-base leading-6 lg:py-1">{desc}</p>

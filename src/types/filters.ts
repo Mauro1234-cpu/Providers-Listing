@@ -4,7 +4,10 @@ export type FiltersHeaderProps = {
   title: string;
   desc: string;
   placeholder: string;
+  filters: FilterState;
+  countProviders: number;
   textCount: string;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
 };
 
 export type FilterState = {

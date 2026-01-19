@@ -4,10 +4,6 @@ import { LoadingState } from "./loading-state";
 import { NotFound } from "./not-found";
 import { ProviderCard } from "./provider-card";
 
-// type CardsProps = {
-//     filters: FilterState
-// }
-
 export const Cards = ({ filters }: { filters: FilterState }) => {
   const { error, loading, providers } = useProviders({ filters });
 
