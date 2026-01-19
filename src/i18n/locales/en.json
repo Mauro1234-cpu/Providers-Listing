@@ -17,9 +17,20 @@
     "title": "HealthConnect",
     "description": "Find your healthcare provider"
   },
+  "filters": {
+    "title": "Healthcare Providers",
+    "desc": "Find and connect with healthcare professionals in your area",
+    "placeholder": "Search providers by name...",
+    "found": "providers found",
+    "notFounds": "No providers found matching your search.",
+    "adjustFilters": "Try adjusting your filters."
+  },
   "notFound": {
     "title": "404 - Page Not Found",
     "description": "The page you are looking for does not exist."
+  },
+  "cards": {
+    "button": "View details"
   },
   "form": {
     "email": "Email",
