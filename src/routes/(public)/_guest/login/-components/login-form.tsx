@@ -2,7 +2,7 @@ import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate, useRouter, useSearch } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { tv } from "tailwind-variants";
 
@@ -30,8 +30,6 @@ export const LoginForm = () => {
   const loginMutation = useLogin();
 
   const router = useRouter();
-  const search = useSearch({ from: "/(public)/_guest/login/" });
-  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 

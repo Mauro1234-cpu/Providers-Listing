@@ -13,6 +13,10 @@
     "publicLayout": "Public layout! I render on all paths inside the /(public)/ folder",
     "home": "Welcome Home!"
   },
+  "header": {
+    "title": "HealthConnect",
+    "description": "Find your healthcare provider"
+  },
   "notFound": {
     "title": "404 - Page Not Found",
     "description": "The page you are looking for does not exist."
