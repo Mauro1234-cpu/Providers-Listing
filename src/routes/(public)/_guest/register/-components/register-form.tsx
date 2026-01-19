@@ -3,7 +3,6 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { toast } from "sonner";
 import { tv } from "tailwind-variants";
 
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
@@ -54,7 +53,6 @@ export const RegisterForm = () => {
 
     registerMutation.mutate(data, {
       onSuccess: async () => {
-        toast.success(t("register.success"));
         await router.invalidate();
         await navigate({ to: "/success" });
       },

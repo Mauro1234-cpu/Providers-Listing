@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
-import { NavigationMenu } from "@/components";
 import type { AvailableRoutesToPath } from "@/config/router";
 import { getAuthStoreState } from "@/stores";
 import { Header } from "./-components";
@@ -17,10 +16,10 @@ const PrivateLayout = () => {
 
   return (
     <div>
-      <Header />
+      <Header desc={t("header.description")} text="AS" title={t("header.title")} />
 
       <main className="flex flex-col gap-4 p-4">
-        <NavigationMenu.Root>
+        {/* <NavigationMenu.Root>
           <NavigationMenu.List>
             {links.map(({ label, path }) => {
               return (
@@ -30,7 +29,7 @@ const PrivateLayout = () => {
               );
             })}
           </NavigationMenu.List>
-        </NavigationMenu.Root>
+        </NavigationMenu.Root> */}
 
         <Outlet />
       </main>
