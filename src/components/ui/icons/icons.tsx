@@ -26,6 +26,9 @@ const AVAILABLE_ICONIFY_ICONS = {
   Eye: "eye",
   EyeOff: "eye-off",
   Lock: "lock",
+  Stethoscope: "stethoscope",
+  MapPin: "map-pin",
+  Phone: "phone",
 };
 
 export const initializeIcons = () => {
