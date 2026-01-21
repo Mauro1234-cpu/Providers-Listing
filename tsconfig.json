@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.tsx", "src/hooks/use-providers"],
+  "include": ["**/*.ts", "**/*.tsx", "src/hooks/use-providers.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
