@@ -1,11 +1,10 @@
-import { useProvidersQuery } from "@/services/providers/actions";
+import type { ProvidersQueryState } from "@/services/providers/types";
 import type { ProviderProps } from "@/types/cards";
 import { LoadingState } from "./loading-state";
 import { NotFound } from "./not-found";
 import { ProviderCard } from "./provider-card";
 
-export const Cards = () => {
-  const { data, isError, isLoading } = useProvidersQuery();
+export const Cards = ({ data, isError, isLoading }: ProvidersQueryState) => {
   const providers = data?.data;
 
   if (isLoading) {
@@ -22,7 +21,7 @@ export const Cards = () => {
 
   return (
     <div className="flex w-full flex-col justify-center lg:flex-row lg:flex-wrap lg:gap-8">
-      {providers.map((provider: ProviderProps) => {
+      {providers?.map((provider: ProviderProps) => {
         return <ProviderCard key={provider.id} provider={provider} />;
       })}
     </div>
