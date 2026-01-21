@@ -1,32 +1,35 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { t } from "i18next";
 
 import { useProvidersQuery } from "@/services/providers/actions";
+import type { RequestParams } from "@/services/types";
 import type { FilterState } from "@/types/filters";
 import { Cards } from "./-components/cards/cards";
 import { FiltersHeader } from "./-components/filters/filters-header";
 
 const HomePage = () => {
-  // const { t } = useTranslation();
-
   const [filters, setFilters] = useState<FilterState>({
     Specialty: "",
     Gender: "",
     Clinic: "",
     search: "",
   });
-  // const [filters, setFilters] = useState<RequestParams<ProviderFilters>>({})
 
-  // const filter = {
-  //   specialty: 1,
-  //   clinic: 1,
-  //   gender: 1,
-  //   page: 1,
-  //   perPage: 3,
-  // };
+  const providerFilters = useMemo(() => {
+    return {
+      specialty: filters.Specialty || undefined,
+      gender: filters.Gender || undefined,
+      clinic: filters.Clinic || undefined,
+      search: filters.search || undefined,
+    };
+  }, [filters]);
 
-  const { data, isError, isLoading } = useProvidersQuery();
+  const params: RequestParams<typeof providerFilters> = {
+    params: providerFilters,
+  };
+
+  const { data, isError, isLoading } = useProvidersQuery({ params });
 
   const count = data?.meta.total;
 

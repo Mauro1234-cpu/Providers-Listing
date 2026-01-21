@@ -6,14 +6,14 @@ import type { providerSchema } from "./schemas";
 
 export type User = z.infer<ReturnType<typeof providerSchema>>;
 
-export type ProviderFilterKey = "clinic" | "specialty" | "gender";
+export type ProviderFilterKey = "clinic" | "specialty" | "gender" | "search";
 
 export type ProviderFilters = Record<ProviderFilterKey, number>;
 
 export type ProviderRequestParams = RequestParams<Record<ProviderFilterKey, number | undefined>>;
 
 export type providerQueryProps = {
-  params?: RequestParams<Record<ProviderFilterKey, number | undefined>>;
+  params?: RequestParams<Record<ProviderFilterKey, string | undefined>>;
   props?: UseQueryProps<typeof queries.list>;
 };
 
