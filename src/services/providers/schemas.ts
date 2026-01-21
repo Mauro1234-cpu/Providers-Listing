@@ -2,7 +2,7 @@ import z from "zod";
 
 const GenderEnum = z.enum(["male", "female", "other"]);
 
-const providerSchema = () => {
+export const providerSchema = () => {
   return z.object({
     id: z.number(),
     name: z.string(),
@@ -56,6 +56,6 @@ export const paginatedResponse = () => {
       to: z.number().nullable(),
       total: z.number().nullable(),
     }),
-    data: providerSchema(),
+    data: z.array(providerSchema()),
   });
 };
