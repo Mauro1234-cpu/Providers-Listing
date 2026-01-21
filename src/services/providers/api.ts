@@ -6,8 +6,12 @@ import { paginatedResponse } from "./schemas";
 import type { ProviderRequestParams } from "./types";
 
 export const getProviders = async (params: ProviderRequestParams) => {
-  await sleep(2000);
-  const data = await privateApi.get("providers", { params });
+  try {
+    await sleep(2000);
+    const data = await privateApi.get("providers", { params });
 
-  return (z.array(paginatedResponse()), data.data);
+    return (z.array(paginatedResponse()), data.data);
+  } catch (error) {
+    return error;
+  }
 };
