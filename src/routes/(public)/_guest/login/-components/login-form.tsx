@@ -24,6 +24,12 @@ const loginFormVariants = tv({
 
 const { spin } = loginFormVariants();
 
+export const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+};
+
 export const LoginForm = () => {
   const { t } = useTranslation();
 
@@ -44,12 +50,6 @@ export const LoginForm = () => {
   });
 
   const errorMessage = errors;
-
-  const sleep = (milliseconds: number) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, milliseconds);
-    });
-  };
 
   const onSubmit: SubmitHandler<LoginPayload> = async (data) => {
     setIsSubmitting(true);
