@@ -1,10 +1,11 @@
 import type z from "zod";
 
 import type { ProviderProps } from "@/types/cards";
-import type { RequestParams } from "../types";
-import type { getProviderSchema } from "./schemas";
+import type { RequestParams, UseQueryProps } from "../types";
+import type { queries } from "./factories";
+import type { providerSchema } from "./schemas";
 
-export type User = z.infer<ReturnType<typeof getProviderSchema>>;
+export type User = z.infer<ReturnType<typeof providerSchema>>;
 
 export type ProviderFilterKey = "clinic" | "specialty" | "gender";
 
@@ -19,4 +20,9 @@ export type ProvidersResponse = {
     total: number;
   };
   data: ProviderProps[];
+};
+
+export type providerQueryProps = {
+  params?: RequestParams<Record<ProviderFilterKey, number | undefined>>;
+  props?: UseQueryProps<typeof queries.list>;
 };
