@@ -3,7 +3,6 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { toast } from "sonner";
 import { tv } from "tailwind-variants";
 
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
@@ -54,7 +53,6 @@ export const RegisterForm = () => {
 
     registerMutation.mutate(data, {
       onSuccess: async () => {
-        toast.success(t("register.success"));
         await router.invalidate();
         await navigate({ to: "/success" });
       },
@@ -72,7 +70,13 @@ export const RegisterForm = () => {
           {t("form.name")}
         </Label>
 
-        <Input error={!!errors?.name?.message} {...register("name")} placeholder={t("form.name")} />
+        <Input
+          autoComplete="name"
+          error={!!errors?.name?.message}
+          {...register("name")}
+          id="name"
+          placeholder={t("form.name")}
+        />
 
         {!!errorMessage && <ErrorMessage>{errors?.name?.message}</ErrorMessage>}
       </div>
@@ -83,7 +87,9 @@ export const RegisterForm = () => {
         </Label>
 
         <Input
+          autoComplete="email"
           error={!!errors?.email?.message}
+          id="email"
           {...register("email")}
           placeholder={t("form.email")}
         />
@@ -99,7 +105,9 @@ export const RegisterForm = () => {
         </div>
 
         <PasswordInput
+          autoComplete="new-password"
           error={!!errors?.password?.message}
+          id="password"
           {...register("password")}
           placeholder={t("form.password")}
         />
@@ -115,7 +123,9 @@ export const RegisterForm = () => {
         </div>
 
         <PasswordInput
+          autoComplete="current-password"
           error={!!errors?.password?.message}
+          id="password-confirmation"
           {...register("password_confirmation")}
           placeholder={t("form.passwordConfirm")}
         />
