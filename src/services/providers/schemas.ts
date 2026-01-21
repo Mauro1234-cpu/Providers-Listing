@@ -2,7 +2,7 @@ import z from "zod";
 
 const GenderEnum = z.enum(["male", "female", "other"]);
 
-export const getProviderSchema = () => {
+const providerSchema = () => {
   return z.object({
     id: z.number(),
     name: z.string(),
@@ -33,11 +33,29 @@ export const getProviderSchema = () => {
   });
 };
 
-export const paginationMetaSchema = z.object({
-  meta: z.object({
-    total: z.number(),
-    perPage: z.number(),
-    lastPage: z.number(),
-  }),
-  data: getProviderSchema(),
-});
+export const paginatedResponse = () => {
+  return z.object({
+    links: z.object({
+      first: z.string().nullable(),
+      last: z.string().nullable(),
+      prev: z.string().nullable(),
+      next: z.string().nullable(),
+    }),
+    meta: z.object({
+      current_page: z.number().nullable(),
+      from: z.number().nullable(),
+      last_page: z.number().nullable(),
+      links: z.object({
+        url: z.string().nullable(),
+        label: z.string().nullable(),
+        page: z.number().nullable(),
+        active: z.boolean(),
+      }),
+      path: z.string().nullable(),
+      per_page: z.number().nullable(),
+      to: z.number().nullable(),
+      total: z.number().nullable(),
+    }),
+    data: providerSchema(),
+  });
+};
