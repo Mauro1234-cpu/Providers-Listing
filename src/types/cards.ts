@@ -6,11 +6,11 @@ type Specialty = {
 export type Clinic = {
   id: number;
   name: string;
-  address: string;
-  city: string;
-  state: string;
-  zip_code: string;
-  phone: string;
+  address: string | null;
+  city: string | null;
+  state: string | null;
+  zip_code: string | null;
+  phone: string | null;
 };
 
 export type ProviderProps = {
@@ -18,12 +18,13 @@ export type ProviderProps = {
   name: string;
   email: string;
   phone: string;
-  gender: string;
-  about: string;
-  languages: string[];
-  profile_pic: string;
-  specialty: Specialty;
+  gender: "male" | "female" | "other";
+  about: string | null;
+  languages: string[] | null;
+  profile_pic: string | null;
+  specialty: Specialty[];
   clinics: Clinic[];
+  is_favorited: boolean;
 };
 
 export type ProviderCardProps = {
