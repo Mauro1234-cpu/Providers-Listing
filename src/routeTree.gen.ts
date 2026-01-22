@@ -13,7 +13,6 @@ import { Route as PrivateLayoutRouteImport } from './routes/_private/layout'
 import { Route as PrivatePageRouteImport } from './routes/_private/page'
 import { Route as publicGuestLayoutRouteImport } from './routes/(public)/_guest/layout'
 import { Route as PrivateUsersPageRouteImport } from './routes/_private/users/page'
-import { Route as PrivateDashboardPageRouteImport } from './routes/_private/dashboard.page'
 import { Route as PrivateSplatPageRouteImport } from './routes/_private/$.page'
 import { Route as publicTermsPageRouteImport } from './routes/(public)/terms.page'
 import { Route as publicGuestSuccessPageRouteImport } from './routes/(public)/_guest/success/page'
@@ -36,11 +35,6 @@ const publicGuestLayoutRoute = publicGuestLayoutRouteImport.update({
 const PrivateUsersPageRoute = PrivateUsersPageRouteImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => PrivateLayoutRoute,
-} as any)
-const PrivateDashboardPageRoute = PrivateDashboardPageRouteImport.update({
-  id: '/dashboard/',
-  path: '/dashboard/',
   getParentRoute: () => PrivateLayoutRoute,
 } as any)
 const PrivateSplatPageRoute = PrivateSplatPageRouteImport.update({
@@ -73,7 +67,6 @@ export interface FileRoutesByFullPath {
   '/': typeof PrivatePageRoute
   '/terms': typeof publicTermsPageRoute
   '/$': typeof PrivateSplatPageRoute
-  '/dashboard': typeof PrivateDashboardPageRoute
   '/users': typeof PrivateUsersPageRoute
   '/login': typeof publicGuestLoginPageRoute
   '/register': typeof publicGuestRegisterPageRoute
@@ -83,7 +76,6 @@ export interface FileRoutesByTo {
   '/': typeof PrivatePageRoute
   '/terms': typeof publicTermsPageRoute
   '/$': typeof PrivateSplatPageRoute
-  '/dashboard': typeof PrivateDashboardPageRoute
   '/users': typeof PrivateUsersPageRoute
   '/login': typeof publicGuestLoginPageRoute
   '/register': typeof publicGuestRegisterPageRoute
@@ -96,7 +88,6 @@ export interface FileRoutesById {
   '/_private/': typeof PrivatePageRoute
   '/(public)/terms/': typeof publicTermsPageRoute
   '/_private/$/': typeof PrivateSplatPageRoute
-  '/_private/dashboard/': typeof PrivateDashboardPageRoute
   '/_private/users/': typeof PrivateUsersPageRoute
   '/(public)/_guest/login/': typeof publicGuestLoginPageRoute
   '/(public)/_guest/register/': typeof publicGuestRegisterPageRoute
@@ -108,21 +99,12 @@ export interface FileRouteTypes {
     | '/'
     | '/terms'
     | '/$'
-    | '/dashboard'
     | '/users'
     | '/login'
     | '/register'
     | '/success'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/terms'
-    | '/$'
-    | '/dashboard'
-    | '/users'
-    | '/login'
-    | '/register'
-    | '/success'
+  to: '/' | '/terms' | '/$' | '/users' | '/login' | '/register' | '/success'
   id:
     | '__root__'
     | '/_private'
@@ -130,7 +112,6 @@ export interface FileRouteTypes {
     | '/_private/'
     | '/(public)/terms/'
     | '/_private/$/'
-    | '/_private/dashboard/'
     | '/_private/users/'
     | '/(public)/_guest/login/'
     | '/(public)/_guest/register/'
@@ -171,13 +152,6 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof PrivateUsersPageRouteImport
-      parentRoute: typeof PrivateLayoutRoute
-    }
-    '/_private/dashboard/': {
-      id: '/_private/dashboard/'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof PrivateDashboardPageRouteImport
       parentRoute: typeof PrivateLayoutRoute
     }
     '/_private/$/': {
@@ -221,14 +195,12 @@ declare module '@tanstack/react-router' {
 interface PrivateLayoutRouteChildren {
   PrivatePageRoute: typeof PrivatePageRoute
   PrivateSplatPageRoute: typeof PrivateSplatPageRoute
-  PrivateDashboardPageRoute: typeof PrivateDashboardPageRoute
   PrivateUsersPageRoute: typeof PrivateUsersPageRoute
 }
 
 const PrivateLayoutRouteChildren: PrivateLayoutRouteChildren = {
   PrivatePageRoute: PrivatePageRoute,
   PrivateSplatPageRoute: PrivateSplatPageRoute,
-  PrivateDashboardPageRoute: PrivateDashboardPageRoute,
   PrivateUsersPageRoute: PrivateUsersPageRoute,
 }
 
