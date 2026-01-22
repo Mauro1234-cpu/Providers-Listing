@@ -1,15 +1,15 @@
 import { deepSnakeKeys } from "string-ts";
 import { z } from "zod";
 
-import { publicApi } from "@/config/api";
+import { privateApi, publicApi } from "@/config/api";
 import { parsePaginatedResponse } from "@/services/schemas";
 import { getUserSchema } from "./schemas";
 import type { CreateUser, UpdateUser, User, UserRequestParams } from "./types";
 
 export const getUser = async (id: User["id"]) => {
-  const response = await publicApi.get(`users/${id}`);
+  const response = await privateApi.get(`users/${id}`);
 
-  return getUserSchema().parse(response.data);
+  return (getUserSchema(), response.data);
 };
 
 export const getUsers = async (params: UserRequestParams) => {

@@ -9,6 +9,7 @@ import { tv } from "tailwind-variants";
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
 import { getLoginPayloadSchema, type LoginPayload, useLogin } from "@/services";
 import { setAuthStoreToken } from "@/stores";
+import { setIdStore } from "@/stores/use-id-store";
 import { handleAxiosFieldErrors } from "@/utils";
 
 const loginFormVariants = tv({
@@ -60,6 +61,7 @@ export const LoginForm = () => {
         const { accessToken } = responseData.data;
         toast.success(t("login.success"));
         setAuthStoreToken(accessToken);
+        setIdStore(accessToken);
         await router.invalidate();
       },
       onError: (error) => {

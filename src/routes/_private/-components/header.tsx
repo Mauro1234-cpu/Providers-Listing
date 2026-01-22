@@ -1,4 +1,6 @@
 import { Logo } from "@/assets/logo";
+import { useUser } from "@/services";
+import { useUserStoreId } from "@/stores/use-id-store";
 import { HamburgerMenu } from "./hamburger-menu";
 
 type HeaderProps = {
@@ -8,6 +10,31 @@ type HeaderProps = {
 };
 
 export const Header = ({ desc, title }: HeaderProps) => {
+  const userId = useUserStoreId();
+
+  const { data, isError, isLoading } = useUser(userId!);
+
+  if (isLoading) {
+    return <div>...</div>;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  const initialsName = (() => {
+    if (!data.data.name) {
+      return "";
+    }
+
+    const nameParts = data.data.name.trim().split(" ");
+
+    const first = nameParts[0]?.charAt(0).toUpperCase() ?? "";
+    const last = nameParts[1]?.charAt(0).toUpperCase() ?? "";
+
+    return first + last;
+  })();
+
   return (
     <div className="border-border-primary mx-5 flex flex-row items-center justify-between border-b py-5 lg:mx-0 lg:px-35">
       <div className="flex flex-row items-center">
