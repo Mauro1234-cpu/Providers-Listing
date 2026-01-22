@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useRouter, useSearch } from "@tanstack/react-router";
 import { toast } from "sonner";
@@ -105,19 +105,12 @@ export const LoginForm = () => {
       </Button>
 
       <p className="text-center text-sm leading-5 text-text-default-tertiary decoration-solid">
-        <u>
-          <Trans
-            components={{
-              Link: (
-                <Link
-                  className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
-                  to="/register"
-                />
-              ),
-            }}
-            i18nKey="login.noAccount"
-          />
-        </u>
+        <Link
+          className="text-sm leading-5 text-text-brand-secondary underline underline-offset-4 hover:opacity-80"
+          to="/register"
+        >
+          {t("login.noAccount")}
+        </Link>
       </p>
     </form>
   );

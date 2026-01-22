@@ -26,7 +26,7 @@ export const buttonVariants = tv({
     },
     size: {
       sm: "px-1.5 py-1 text-xs md:px-2 md:py-1.5 md:text-sm",
-      default: "px-1.5 py-1 text-lg md:px-2 md:py-1.5 md:text-base",
+      default: "px-1.5 py-1 text-base leading-6 md:px-2 md:py-1.5",
       lg: "px-3 py-2 text-lg",
       icon: "p-3",
     },
@@ -63,7 +63,7 @@ export const Button = ({
   ) : (
     <button
       className={base({ variant, size, className })}
-      disabled={isLoading || disabled}
+      disabled={disabled || isLoading}
       type="button"
       {...props}
     >

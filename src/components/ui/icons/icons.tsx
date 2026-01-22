@@ -85,6 +85,7 @@ export const Icons = { ...iconifyIcons } as const;
 type IconWrapperProps<TElement extends ElementType> = {
   size?: Size;
   as?: TElement;
+  error?: boolean;
 } & Styled &
   PropsWithChildren;
 
