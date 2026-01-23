@@ -1,18 +1,20 @@
 import type { clinics, genders, specialties } from "@/constants/filter-groups";
+import type { ProviderFilters } from "@/services/providers/types";
 
 export type FiltersHeaderProps = {
   title: string;
   desc: string;
   placeholder: string;
-  filters: FilterState;
+  filters: ProviderFilters;
   countProviders: number;
   textCount: string;
-  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
 export type FilterState = {
-  Specialty: (typeof specialties.options)[number] | "";
-  Gender: (typeof genders.options)[number] | "";
-  Clinic: (typeof clinics.options)[number] | "";
+  specialty: (typeof specialties)[number] | "";
+  gender: (typeof genders)[number] | "";
+  clinic: (typeof clinics)[number] | "";
   search: string;
+  favorited: boolean;
 };

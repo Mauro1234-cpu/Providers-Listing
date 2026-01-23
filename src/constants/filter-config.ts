@@ -4,10 +4,11 @@ import { clinics, genders, specialties } from "./filter-groups";
 export const filterConfig: {
   key: keyof FilterState;
   data: {
-    options: string[];
-  };
+    id: number;
+    name: string;
+  }[];
 }[] = [
-  { key: "Specialty", data: specialties },
-  { key: "Gender", data: genders },
-  { key: "Clinic", data: clinics },
+  { key: "specialty", data: specialties },
+  { key: "gender", data: genders },
+  { key: "clinic", data: clinics },
 ];
