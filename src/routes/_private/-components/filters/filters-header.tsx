@@ -3,10 +3,6 @@ import type { FiltersHeaderProps } from "@/types/filters";
 import { ProvidersFound } from "./providers-found";
 import { SelectsFields } from "./selects-fields";
 
-// type FilterProps = {
-//     setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
-//   }
-
 export const FiltersHeader = ({
   countProviders,
   desc,
@@ -39,7 +35,7 @@ export const FiltersHeader = ({
               }}
               placeholder={placeholder}
               type="text"
-              value={filters.search}
+              value={filters.name}
             />
           </div>
           <div className="flex flex-col gap-4 lg:flex-row">

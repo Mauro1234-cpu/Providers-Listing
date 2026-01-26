@@ -2,15 +2,21 @@ import { useState } from "react";
 import { twMerge as tw } from "tailwind-merge";
 
 import { Icons } from "@/components";
+import type { ProviderFilters } from "@/services/providers/types";
 import type { FilterState } from "@/types/filters";
+
+type Option = {
+  id: number;
+  name: string;
+};
 
 type SelectFieldProps = {
   name: keyof FilterState;
-  filter: string;
-  options: string[];
+  filter: Option;
+  options: Option[];
   isOpen: boolean;
   setOpenName: React.Dispatch<React.SetStateAction<string>>;
-  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
 export const SelectField = ({
@@ -21,7 +27,7 @@ export const SelectField = ({
   setFilters,
   setOpenName,
 }: SelectFieldProps) => {
-  const [activeOption, setActiveOption] = useState<string>(filter);
+  const [activeOption, setActiveOption] = useState<string>(filter.name);
 
   const handleToggle = () => {
     setOpenName((prev) => {
@@ -54,23 +60,23 @@ export const SelectField = ({
                 <button
                   className={tw(
                     "hover:bg-tertiary flex w-full flex-row items-center justify-between rounded-lg p-2 text-left",
-                    activeOption == option ? "bg-tertiary" : "",
+                    activeOption == option.name ? "bg-tertiary" : "",
                   )}
-                  key={option}
+                  key={option.id}
                   onClick={() => {
                     setFilters((prev) => {
                       return {
                         ...prev,
-                        [name]: option,
+                        [name]: option.id,
                       };
                     });
                     setOpenName("");
-                    setActiveOption(option);
+                    setActiveOption(option.name);
                   }}
                   type="button"
                 >
-                  {option}
-                  {activeOption == option && <Icons.Check />}
+                  {option.name}
+                  {activeOption == option.name && <Icons.Check />}
                 </button>
               );
             })}

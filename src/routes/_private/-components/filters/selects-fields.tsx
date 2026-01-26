@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { filterConfig } from "@/constants/filter-config";
-import type { FilterState } from "@/types/filters";
+import type { ProviderFilters } from "@/services/providers/types";
 import { SelectField } from "./select-field";
 
 type SelectsFieldsProps = {
-  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
 export const SelectsFields = ({ setFilters }: SelectsFieldsProps) => {
@@ -14,11 +14,11 @@ export const SelectsFields = ({ setFilters }: SelectsFieldsProps) => {
   return filterConfig.map(({ data, key }) => {
     return (
       <SelectField
-        filter={data.options[0]}
+        filter={data[0]}
         isOpen={openName == key}
         key={key}
         name={key}
-        options={data.options}
+        options={data}
         setFilters={setFilters}
         setOpenName={setOpenName}
       />
