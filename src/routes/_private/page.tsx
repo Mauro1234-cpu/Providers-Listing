@@ -1,33 +1,22 @@
-import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { t } from "i18next";
 
+import { getSelectedFilters } from "@/hooks/use-providers-filter-selections";
+import { useProvidersFilters } from "@/hooks/use-providers-filters";
 import { useProvidersQuery } from "@/services/providers/actions";
-import type { RequestParams } from "@/services/types";
-import type { FilterState } from "@/types/filters";
+import { buildProviderParams } from "@/services/providers/build-provider-params";
 import { Cards } from "./-components/cards/cards";
 import { FiltersHeader } from "./-components/filters/filters-header";
 
 const HomePage = () => {
-  const [filters, setFilters] = useState<FilterState>({
-    Specialty: "",
-    Gender: "",
-    Clinic: "",
-    search: "",
-  });
+  const { filters, setFilters } = useProvidersFilters();
 
-  const providerFilters = useMemo(() => {
-    return {
-      specialty: filters.Specialty || undefined,
-      gender: filters.Gender || undefined,
-      clinic: filters.Clinic || undefined,
-      search: filters.search || undefined,
-    };
-  }, [filters]);
+  const { selectedClinic, selectedGender, selectedSpecialty } = getSelectedFilters({ filters });
 
-  const params: RequestParams<typeof providerFilters> = {
-    params: providerFilters,
-  };
+  const params = buildProviderParams(
+    { selectedClinic, selectedGender, selectedSpecialty },
+    filters,
+  );
 
   const { data, isError, isLoading } = useProvidersQuery({ params });
 

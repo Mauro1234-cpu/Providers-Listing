@@ -18,3 +18,18 @@ export type FilterState = {
   search: string;
   favorited: boolean;
 };
+
+export type SelectedFilters = {
+  selectedClinic?: {
+    id: number;
+    name: string;
+  };
+  selectedSpecialty?: {
+    id: number;
+    name: string;
+  };
+  selectedGender?: {
+    id: number;
+    name: string;
+  };
+};

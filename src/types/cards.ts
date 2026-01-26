@@ -1,6 +1,11 @@
-type Specialty = {
+export type Specialty = {
   id: number;
   name: string;
+};
+
+export type Gender = {
+  id: number;
+  name: "male" | "female" | "other";
 };
 
 export type Clinic = {
@@ -18,7 +23,7 @@ export type ProviderProps = {
   name: string;
   email: string;
   phone: string;
-  gender: "male" | "female" | "other";
+  gender: Gender;
   about: string | null;
   languages: string[] | null;
   profile_pic: string | null;
