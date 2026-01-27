@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { t } from "i18next";
 import { tv } from "tailwind-variants";
 
 import { Icons } from "@/components";
+import type { ProviderFilters } from "@/services/providers/types";
 
 export const buttonVariants = tv({
   slots: {
@@ -34,20 +34,25 @@ export const buttonVariants = tv({
 
 type buttonProps = {
   found: number;
+  filters: ProviderFilters;
+  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
 const { base, count } = buttonVariants();
 
-export const FavoritesButton = ({ found }: buttonProps) => {
-  const [active, setActive] = useState(false);
+export const FavoritesButton = ({ filters, found, setFilters }: buttonProps) => {
+  const active = filters.favorited || undefined;
 
   return (
     <button
       className={base({ variant: "primary", size: "lg", isActive: active })}
       id="buttonFavorites"
       onClick={() => {
-        setActive((a) => {
-          return !a;
+        setFilters((prev) => {
+          return {
+            ...prev,
+            favorited: prev.favorited ? null : true,
+          };
         });
       }}
       type="button"

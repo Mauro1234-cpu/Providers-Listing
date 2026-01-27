@@ -42,7 +42,7 @@ export const FiltersHeader = ({
           </div>
           <div className="flex flex-col gap-4 lg:flex-row">
             <SelectsFields setFilters={setFilters} />
-            <FavoritesButton found={favoritesFound} />
+            <FavoritesButton filters={filters} found={favoritesFound} setFilters={setFilters} />
           </div>
         </form>
         <ProvidersFound countProviders={countProviders} textCount={textCount} />

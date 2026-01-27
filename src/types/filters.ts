@@ -8,6 +8,7 @@ export type FiltersHeaderProps = {
   filters: ProviderFilters;
   countProviders: number;
   textCount: string;
+  favoritesFound: number;
   setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
