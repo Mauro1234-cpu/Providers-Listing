@@ -19,7 +19,9 @@ export const Header = ({ desc, title }: HeaderProps) => {
   }
 
   if (isError) {
+    /* cspell:disable */
     return <div>Error</div>;
+    /* cspell:enable */
   }
 
   const initialsName = (() => {
