@@ -2,33 +2,37 @@ import { Icons } from "@/components";
 import type { Clinic } from "@/types/cards";
 
 type ProviderClinicsProps = {
-  btn: string;
+  textLink: string;
   clinics: Clinic[];
 };
 
-export const ProviderClinics = ({ btn, clinics }: ProviderClinicsProps) => {
+export const ProviderClinics = ({ clinics, textLink }: ProviderClinicsProps) => {
   return (
     <div>
       {clinics.map((clinic) => {
+        const searchText = `${clinic.address}`;
+        const encodedSearch = encodeURIComponent(searchText);
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedSearch}`;
+
         return (
           <div
-            className="border-border-primary my-3 rounded-xl border p-4 leading-6"
+            className="my-3 rounded-xl border border-border-default-default p-4 leading-6"
             key={clinic.id}
           >
-            <p className="text-primary">{clinic.name}</p>
+            <p className="text-text-default-default">{clinic.name}</p>
 
-            <div className="text-tertiary w-1/2 py-2 text-base font-normal">
+            <div className="w-1/2 py-2 text-base font-normal text-text-default-tertiary">
               <p>{clinic.address}</p>
               <p className="py-1">{clinic.city}</p>
               <p>{clinic.phone}</p>
             </div>
-            <button
+            <a
               className="border-border-secondary flex w-full flex-row items-center justify-center gap-3 rounded-md border py-2 leading-6 font-medium"
-              type="button"
+              href={mapsUrl}
             >
               <Icons.MapPin className="w-4" />
-              {btn}
-            </button>
+              {textLink}
+            </a>
           </div>
         );
       })}
