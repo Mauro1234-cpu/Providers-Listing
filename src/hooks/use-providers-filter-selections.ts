@@ -7,15 +7,26 @@ type SelectedProps = {
 };
 
 export const getSelectedFilters = ({ filters }: SelectedProps): SelectedFilters => {
-  return {
-    selectedClinic: clinics.find((c) => {
-      return c.id === filters.clinic;
-    }),
-    selectedSpecialty: specialties.find((s) => {
-      return s.id === filters.specialty;
-    }),
-    selectedGender: genders.find((g) => {
-      return g.id === filters.gender;
-    }),
-  };
+  const selectedClinic =
+    filters.clinic === 0
+      ? undefined
+      : clinics.find((c) => {
+          return c.id === filters.clinic;
+        });
+
+  const selectedSpecialty =
+    filters.specialty === 0
+      ? undefined
+      : specialties.find((s) => {
+          return s.id === filters.specialty;
+        });
+
+  const selectedGender =
+    filters.gender === 0
+      ? undefined
+      : genders.find((g) => {
+          return g.id === filters.gender;
+        });
+
+  return { selectedClinic, selectedSpecialty, selectedGender };
 };

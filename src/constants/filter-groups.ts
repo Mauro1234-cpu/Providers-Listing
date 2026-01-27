@@ -1,4 +1,5 @@
 export const specialties = [
+  { id: 0, name: "All specialties" },
   { id: 1, name: "Cardiology" },
   { id: 2, name: "Dermatology" },
   { id: 3, name: "Endocrinology" },
@@ -17,13 +18,14 @@ export const specialties = [
 ];
 
 export const genders = [
-  { id: 1, name: "All genders" },
-  { id: 2, name: "Female" },
-  { id: 3, name: "Male" },
+  { id: 0, name: "All genders" },
+  { id: 1, name: "Female" },
+  { id: 2, name: "Male" },
 ];
 
 /* cspell:disable */
 export const clinics = [
+  { id: 0, name: "All clinics" },
   { id: 1, name: "Connelly-Kozey Medical Center" },
   { id: 2, name: "Schinner, Walker and Boehm Medical Center" },
   { id: 3, name: "Wisoky, Tillman and Sporer Medical Center" },
