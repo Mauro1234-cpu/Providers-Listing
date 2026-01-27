@@ -8,6 +8,7 @@ import { SIZE, type Size, type Styled } from "@/types/styles";
 const LUCIDE_PREFIX = "lucide:";
 
 const AVAILABLE_ICONIFY_ICONS = {
+  Heart: "heart",
   Check: "check",
   ChevronDown: "chevron-down",
   ChevronRight: "chevron-right",
