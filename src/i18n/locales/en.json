@@ -4,6 +4,8 @@
     "no": "No",
     "close": "Close",
     "filter": "Filter",
+    "error": "Error",
+    "loading": "Loading...",
     "requestError": "Unable to complete the request. Please try again later."
   },
   "greetings": {

@@ -1,3 +1,5 @@
+import { t } from "i18next";
+
 import { Logo } from "@/assets/logo";
 import { useUser } from "@/services";
 import { useUserStoreId } from "@/stores/use-id-store";
@@ -15,13 +17,11 @@ export const Header = ({ desc, title }: HeaderProps) => {
   const { data, isError, isLoading } = useUser(userId!);
 
   if (isLoading) {
-    return <div>...</div>;
+    return <div>{t("common.loading")}</div>;
   }
 
   if (isError) {
-    /* cspell:disable */
-    return <div>Error</div>;
-    /* cspell:enable */
+    return <div>{t("common.error")}</div>;
   }
 
   const initialsName = (() => {
