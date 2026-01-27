@@ -5,7 +5,7 @@ import { LangIcon } from "./lang-icon";
 
 type OverviewProps = {
   subtitleAbo: string;
-  desc: string;
+  desc: string | null;
   subContact: string;
   subLang: string;
   phoneInfo: string;

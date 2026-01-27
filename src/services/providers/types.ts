@@ -70,7 +70,7 @@ export type ProvidersResponse = {
     specialty: {
       id: number;
       name: string;
-    }[];
+    };
     clinics: {
       id: number;
       name: string;
