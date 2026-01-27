@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { twMerge as tw } from "tailwind-merge";
+import { tv } from "tailwind-variants";
 
 import { Icons } from "@/components";
 import type { ProviderFilters } from "@/services/providers/types";
@@ -19,6 +19,30 @@ type SelectFieldProps = {
   setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };
 
+const selectVariants = tv({
+  slots: {
+    base: "absolute top-full left-0 z-10 mt-1 w-full rounded-md border border-border-default-default bg-white shadow-lg",
+    button:
+      "flex w-full flex-row items-center justify-between rounded-lg p-2 text-left hover:bg-background-brand-tertiary",
+    span: "w-5",
+  },
+  variants: {
+    open: {
+      true: {
+        base: "block",
+        button: "bg-background-brand-tertiary",
+        span: "text-white",
+      },
+      false: {
+        base: "hidden",
+        span: "text-text-default-default",
+      },
+    },
+  },
+});
+
+const { base, button } = selectVariants();
+
 export const SelectField = ({
   filter,
   isOpen,
@@ -36,9 +60,9 @@ export const SelectField = ({
   };
 
   return (
-    <div className="border-border-primary bg-input relative flex flex-row items-center justify-between gap-3 rounded-md border p-2 lg:w-1/4">
+    <div className="bg-input relative flex flex-row items-center justify-between gap-3 rounded-md border border-border-default-default p-2 lg:w-1/4">
       <button
-        className="flex w-full flex-row items-center justify-between text-black focus:outline-none"
+        className="flex w-full flex-row items-center justify-between text-sm text-text-default-default focus:outline-none"
         id="dropdownDefaultButton"
         onClick={handleToggle}
         type="button"
@@ -46,22 +70,16 @@ export const SelectField = ({
         {activeOption}
         <Icons.ChevronDown className="mr-1 size-6" />
       </button>
-      <div
-        className={tw(
-          "border-border-primary absolute top-full left-0 z-10 mt-1 w-full rounded-md border bg-white shadow-lg",
-          isOpen ? "block" : "hidden",
-        )}
-        id="dropdown"
-      >
-        <ul aria-labelledby="dropdownDefaultButton" className="text-body p-2 text-sm font-medium">
+      <div className={base({ open: isOpen })} id="dropdown">
+        <ul
+          aria-labelledby="dropdownDefaultButton"
+          className="p-2 text-sm leading-5 text-text-default-default"
+        >
           <li>
             {options.map((option) => {
               return (
                 <button
-                  className={tw(
-                    "hover:bg-tertiary flex w-full flex-row items-center justify-between rounded-lg p-2 text-left",
-                    activeOption == option.name ? "bg-tertiary" : "",
-                  )}
+                  className={button({ open: activeOption == option.name })}
                   key={option.id}
                   onClick={() => {
                     setFilters((prev) => {

@@ -34,13 +34,15 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
 
   const { about, clinics, email, languages, name, phone, profile_pic, specialty } = provider;
   const language = () => {
-    return languages.join(", ");
+    return languages?.join(", ");
   };
+
+  const providerPic = profile_pic || undefined;
 
   return (
     <>
       <button
-        className="bg-default mt-auto w-full rounded-md p-2 text-white"
+        className="mt-auto w-full rounded-md bg-background-brand-default p-2 text-white"
         onClick={() => {
           setOpen((o) => {
             return !o;
@@ -58,7 +60,7 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
             return setOpen(false);
           }}
         />
-        <div className="relative mx-6 h-7/10 w-8/10 overflow-y-auto rounded-xl bg-white p-4 shadow-xl lg:w-2/5">
+        <div className="relative mx-6 h-7/10 w-8/10 overflow-y-auto rounded-xl border border-border-default-default bg-background-default-default p-4 shadow-xl lg:w-2/5">
           <button
             className="absolute top-3 right-3 z-10 p-1"
             onClick={() => {
@@ -68,15 +70,15 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
             <Icons.Close className="w-4" />
           </button>
           <div className="flex flex-row items-center gap-4">
-            <img alt="Doctor image" className="w-22 rounded-lg" src={profile_pic} />
+            <img alt="Doctor image" className="w-22 rounded-lg" src={providerPic} />
             <div>
-              <h1 className="mb-1 text-2xl font-semibold">{name}</h1>
-              <p className="text-tertiary text-lg font-medium">{specialty.name}</p>
+              <h1 className="mb-1 text-2xl font-semibold text-text-default-default">{name}</h1>
+              <p className="text-lg font-medium text-text-default-tertiary">{specialty.name}</p>
             </div>
           </div>
 
-          <div className="bg-tertiary mt-7 items-center gap-4 rounded-3xl p-1">
-            <div className="bg-tertiary flex flex-row justify-center rounded-3xl">
+          <div className="mt-7 items-center gap-4 rounded-3xl bg-background-brand-tertiary p-1">
+            <div className="flex flex-row justify-center rounded-3xl">
               <Button
                 icon={<OverviewIcon />}
                 nameBtn={overview.toLowerCase()}

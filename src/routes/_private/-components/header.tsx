@@ -40,8 +40,8 @@ export const Header = ({ desc, title }: HeaderProps) => {
       <div className="flex flex-row items-center">
         <Logo className="w-11" />
         <div className="mx-3 flex flex-col">
-          <h1 className="text-primary text-2xl font-semibold">{title}</h1>
-          <p className="text-tertiary text-sm">{desc}</p>
+          <h1 className="text-2xl font-semibold text-text-default-default">{title}</h1>
+          <p className="text-base text-text-default-tertiary">{desc}</p>
         </div>
       </div>
       <HamburgerMenu text={initialsName || ""} />

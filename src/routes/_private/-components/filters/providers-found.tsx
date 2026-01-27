@@ -9,7 +9,7 @@ export const ProvidersFound = ({ countProviders, textCount }: ProvidersFoundProp
   }
 
   return (
-    <div className="text-tertiary my-4 flex flex-row gap-1 leading-6 font-medium">
+    <div className="my-1 flex flex-row gap-1 leading-6 font-medium text-text-default-tertiary">
       <p>{countProviders}</p>
       <p>{textCount}</p>
     </div>
