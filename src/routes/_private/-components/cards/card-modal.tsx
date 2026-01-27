@@ -72,7 +72,9 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
           <div className="flex flex-row items-center gap-4">
             <img alt="Doctor image" className="w-22 rounded-lg" src={providerPic} />
             <div>
-              <h1 className="mb-1 text-2xl font-semibold text-text-default-default">{name}</h1>
+              <h1 className="mb-1 text-3xl font-semibold text-text-default-default">
+                {t("cards.name", { field: name })}
+              </h1>
               <p className="text-lg font-medium text-text-default-tertiary">{specialty.name}</p>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { tv } from "tailwind-variants";
 
 import { Icons } from "@/components";
@@ -31,7 +32,9 @@ export const ProviderCard = ({ provider }: ProviderCardProps) => {
       <img alt="Doctor image" src={providerPic} />
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div>
-          <h1 className="mb-1 text-2xl font-semibold text-text-default-default">{name}</h1>
+          <h1 className="mb-1 text-2xl font-semibold text-text-default-default">
+            {t("cards.name", { field: name })}
+          </h1>
           <p className="text-xl font-medium text-text-default-tertiary">{specialty.name}</p>
         </div>
         <div>

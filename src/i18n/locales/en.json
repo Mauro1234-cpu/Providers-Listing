@@ -30,6 +30,7 @@
     "description": "The page you are looking for does not exist."
   },
   "cards": {
+    "name": "Dr. {field}",
     "button": "View details"
   },
   "form": {
@@ -49,6 +50,9 @@
       "confirm": "Please confirm your password"
     }
   },
+
+  "favorites": "Favorites",
+
   "login": {
     "welcome": "Welcome back",
     "description": "Enter your email and password to access your account",
