@@ -62,12 +62,12 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
         />
         <div className="relative mx-6 flex h-156 w-86 flex-col gap-6 overflow-y-auto rounded-xl border border-border-default-default bg-background-default-default p-6 shadow-xl lg:h-142 lg:w-136">
           <button
-            className="absolute top-3 right-3 z-10 p-1"
+            className="absolute top-3 right-3 z-10 p-2"
             onClick={() => {
               return setOpen(false);
             }}
           >
-            <Icons.Close className="w-4" />
+            <Icons.Close className="size-5" />
           </button>
           <div className="flex flex-row items-center gap-4">
             <img alt="Doctor image" className="size-25 rounded-lg" src={providerPic} />

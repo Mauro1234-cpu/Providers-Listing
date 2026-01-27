@@ -11,7 +11,7 @@ const PrivateLayout = () => {
     <div>
       <Header desc={t("header.description")} text="AS" title={t("header.title")} />
 
-      <main className="flex flex-col gap-4 p-4">
+      <main className="flex flex-col gap-4 px-4 py-1">
         <Outlet />
       </main>
     </div>

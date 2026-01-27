@@ -22,6 +22,8 @@ type SelectFieldProps = {
 const selectVariants = tv({
   slots: {
     base: "absolute top-full left-0 z-10 mt-1 w-full rounded-md border border-border-default-default bg-white shadow-lg",
+    container:
+      "relative flex flex-row items-center justify-between gap-3 rounded-md border border-border-default-default bg-background-default-default p-2 lg:w-1/4",
     button:
       "flex w-full flex-row items-center justify-between rounded-lg p-2 text-left hover:bg-background-brand-tertiary",
     span: "w-5",
@@ -30,6 +32,7 @@ const selectVariants = tv({
     open: {
       true: {
         base: "block",
+        container: "border-border-brand-default",
         button: "bg-background-brand-tertiary",
         span: "text-white",
       },
@@ -41,7 +44,7 @@ const selectVariants = tv({
   },
 });
 
-const { base, button } = selectVariants();
+const { base, button, container } = selectVariants();
 
 export const SelectField = ({
   filter,
@@ -60,7 +63,7 @@ export const SelectField = ({
   };
 
   return (
-    <div className="bg-input relative flex flex-row items-center justify-between gap-3 rounded-md border border-border-default-default p-2 lg:w-1/4">
+    <div className={container({ open: isOpen })}>
       <button
         className="flex w-full flex-row items-center justify-between text-sm text-text-default-default focus:outline-none"
         id="dropdownDefaultButton"
