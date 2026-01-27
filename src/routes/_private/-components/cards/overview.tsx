@@ -1,44 +1,41 @@
+import { t } from "i18next";
+
 import { MailIcon } from "@/assets/mail-icon";
 import { PhoneIcon } from "@/assets/phone-icon";
 import { InfoRow } from "./info-row";
 import { LangIcon } from "./lang-icon";
 
 type OverviewProps = {
-  subtitleAbo: string;
   desc: string | null;
-  subContact: string;
-  subLang: string;
   phoneInfo: string;
   emailInfo: string;
   langInfo: React.ReactNode;
 };
 
-export const Overview = ({
-  desc,
-  emailInfo,
-  langInfo,
-  phoneInfo,
-  subContact,
-  subLang,
-  subtitleAbo,
-}: OverviewProps) => {
+export const Overview = ({ desc, emailInfo, langInfo, phoneInfo }: OverviewProps) => {
   return (
-    <>
-      <div className="border-border-primary border-b py-5">
-        <p className="text-primary py-1 text-lg font-medium">{subtitleAbo}</p>
-        <p className="text-secondary/90 pt-2 text-base leading-6 font-normal">{desc}</p>
+    <div className="flex flex-col gap-5 overflow-y-auto">
+      <div className="border-b border-border-default-default pb-5">
+        <p className="py-1 text-lg font-medium text-text-default-default">
+          {t("modal.overview.about")}
+        </p>
+        <p className="pt-2 leading-6 text-text-default-secondary">{desc}</p>
       </div>
 
-      <div className="border-border-primary border-b py-4">
-        <p className="text-primary pb-1 text-lg font-medium">{subContact}</p>
-        <InfoRow icon={<PhoneIcon />}>{phoneInfo}</InfoRow>
-        <InfoRow icon={<MailIcon />}>{emailInfo}</InfoRow>
+      <div className="border-b border-border-default-default pb-5">
+        <p className="pb-1 text-lg font-medium text-text-default-default">
+          {t("modal.overview.contact")}
+        </p>
+        <div className="flex flex-col pl-1 lg:flex-row lg:items-center lg:gap-6">
+          <InfoRow icon={<PhoneIcon className="size-5" />}>{phoneInfo}</InfoRow>
+          <InfoRow icon={<MailIcon className="size-5" />}>{emailInfo}</InfoRow>
+        </div>
       </div>
 
-      <div className="pt-4">
-        <p className="text-primary text-lg font-medium">{subLang}</p>
+      <div className="flex flex-col gap-1">
+        <p className="text-primary text-lg font-medium">{t("modal.overview.langs")}</p>
         <InfoRow icon={<LangIcon />}>{langInfo}</InfoRow>
       </div>
-    </>
+    </div>
   );
 };

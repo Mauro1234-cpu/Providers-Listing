@@ -18,7 +18,7 @@ const buttonVariants = tv({
   variants: {
     selected: {
       true: {
-        base: "bg-default text-white",
+        base: "bg-background-brand-default text-white",
         span: "text-white",
         button: "text-white",
       },

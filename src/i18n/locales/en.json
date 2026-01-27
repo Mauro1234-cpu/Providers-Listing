@@ -33,6 +33,18 @@
     "name": "Dr. {field}",
     "button": "View details"
   },
+  "modal": {
+    "location": {
+      "name": "Location",
+      "redirect": "View on Google Maps"
+    },
+    "overview": {
+      "name": "Overview",
+      "contact": "Contact information",
+      "langs": "Languages",
+      "about": "About"
+    }
+  },
   "form": {
     "email": "Email",
     "password": "Password",

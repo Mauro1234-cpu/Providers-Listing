@@ -60,7 +60,7 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
             return setOpen(false);
           }}
         />
-        <div className="relative mx-6 h-7/10 w-8/10 overflow-y-auto rounded-xl border border-border-default-default bg-background-default-default p-4 shadow-xl lg:w-2/5">
+        <div className="relative mx-6 flex h-156 w-86 flex-col gap-6 overflow-y-auto rounded-xl border border-border-default-default bg-background-default-default p-6 shadow-xl lg:h-142 lg:w-136">
           <button
             className="absolute top-3 right-3 z-10 p-1"
             onClick={() => {
@@ -70,16 +70,16 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
             <Icons.Close className="w-4" />
           </button>
           <div className="flex flex-row items-center gap-4">
-            <img alt="Doctor image" className="w-22 rounded-lg" src={providerPic} />
+            <img alt="Doctor image" className="size-25 rounded-lg" src={providerPic} />
             <div>
               <h1 className="mb-1 text-3xl font-semibold text-text-default-default">
                 {t("cards.name", { field: name })}
               </h1>
-              <p className="text-lg font-medium text-text-default-tertiary">{specialty.name}</p>
+              <p className="text-xl font-medium text-text-default-tertiary">{specialty.name}</p>
             </div>
           </div>
 
-          <div className="mt-7 items-center gap-4 rounded-3xl bg-background-brand-tertiary p-1">
+          <div className="items-center gap-4 rounded-3xl bg-background-brand-tertiary p-1">
             <div className="flex flex-row justify-center rounded-3xl">
               <Button
                 icon={<OverviewIcon />}
@@ -99,20 +99,10 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
           </div>
 
           {isSelected === overview.toLowerCase() && (
-            <Overview
-              desc={about}
-              emailInfo={email}
-              langInfo={language()}
-              phoneInfo={phone}
-              subContact="Contact information"
-              subLang="Languages"
-              subtitleAbo="About"
-            />
+            <Overview desc={about} emailInfo={email} langInfo={language()} phoneInfo={phone} />
           )}
 
-          {isSelected === location.toLowerCase() && (
-            <Locations allClinics={clinics} btn="View on Google Maps" subtitleLoc="Locations" />
-          )}
+          {isSelected === location.toLowerCase() && <Locations allClinics={clinics} />}
         </div>
       </div>
     </>
