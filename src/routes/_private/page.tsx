@@ -1,16 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { t } from "i18next";
 
 import { getSelectedFilters } from "@/hooks/use-providers-filter-selections";
 import { useProvidersFilters } from "@/hooks/use-providers-filters";
 import { useProvidersQuery } from "@/services/providers/actions";
 import { buildProviderParams } from "@/services/providers/build-provider-params";
+import { providerSearchSchema } from "@/services/providers/schemas";
 import type { ProviderProps } from "@/types/cards";
 import { Cards } from "./-components/cards/cards";
 import { FiltersHeader } from "./-components/filters/filters-header";
 
+// type providerSearch = z.infer<typeof providerSearchSchema>
+
 const HomePage = () => {
   const { filters, setFilters } = useProvidersFilters();
+
+  const search = useSearch({ from: "/_private/" });
 
   const { selectedClinic, selectedGender, selectedSpecialty } = getSelectedFilters({ filters });
 
@@ -55,4 +60,9 @@ const HomePage = () => {
   );
 };
 
-export const Route = createFileRoute("/_private/")({ component: HomePage });
+export const Route = createFileRoute("/_private/")({
+  component: HomePage,
+  validateSearch: (search) => {
+    providerSearchSchema.parse(search);
+  },
+});

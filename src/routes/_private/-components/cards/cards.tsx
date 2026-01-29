@@ -25,7 +25,7 @@ export const Cards = ({
           fetchNextPage();
         }
       },
-      { threshold: 1.0 },
+      { threshold: 0.1 },
     );
     observer.observe(observerRef.current);
 

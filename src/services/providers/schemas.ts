@@ -2,6 +2,16 @@ import z from "zod";
 
 const GenderEnum = z.enum(["male", "female", "other"]);
 
+export const providerSearchSchema = z.object({
+  filter: z.object({
+    specialty: z.number().nullable(),
+    clinics: z.number().nullable(),
+    gender: z.string().nullable(),
+    name: z.string(),
+    favorited: z.boolean().nullable(),
+  }),
+});
+
 export const providerSchema = () => {
   return z.object({
     id: z.number(),
