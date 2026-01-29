@@ -1,11 +1,38 @@
+import { useEffect, useRef } from "react";
+
 import type { ProvidersQueryState } from "@/services/providers/types";
 import type { ProviderProps } from "@/types/cards";
 import { LoadingState } from "./loading-state";
 import { NotFound } from "./not-found";
 import { ProviderCard } from "./provider-card";
 
-export const Cards = ({ data, isError, isLoading }: ProvidersQueryState) => {
-  const providers = data?.data;
+export const Cards = ({
+  fetchNextPage,
+  hasNextPage,
+  isError,
+  isLoading,
+  providers,
+}: ProvidersQueryState) => {
+  const observerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!observerRef.current) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1.0 },
+    );
+    observer.observe(observerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [fetchNextPage, hasNextPage]);
 
   if (isLoading) {
     return <LoadingState />;
@@ -24,6 +51,7 @@ export const Cards = ({ data, isError, isLoading }: ProvidersQueryState) => {
       {providers?.map((provider: ProviderProps) => {
         return <ProviderCard key={provider.id} provider={provider} />;
       })}
+      <div ref={observerRef} />
     </div>
   );
 };

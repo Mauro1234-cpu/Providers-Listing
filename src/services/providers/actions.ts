@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useProvidersInfinite } from "@/hooks/use-providers-infinite";
+import type { RequestParams } from "../types";
+import type { ProviderRequestFilters } from "./types";
 
-import { queries } from "./factories";
-import type { providerQueryProps } from "./types";
-
-export const useProvidersQuery = ({ params, props }: providerQueryProps = {}) => {
-  return useQuery({ ...queries.list(params), ...props });
+export const useProvidersQuery = (params: RequestParams<ProviderRequestFilters>) => {
+  return useProvidersInfinite(params);
 };

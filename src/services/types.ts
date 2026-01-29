@@ -29,5 +29,6 @@ export type UseMutationProps<T extends (...args: never) => unknown> = Omit<
 
 export type RequestParams<T> = {
   filter?: T;
-  page?: number;
+  page?: number | undefined;
+  pageParam?: number | undefined;
 };

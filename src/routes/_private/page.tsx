@@ -19,13 +19,18 @@ const HomePage = () => {
     filters,
   );
 
-  const { data, isError, isLoading } = useProvidersQuery({ params });
+  const { data, fetchNextPage, hasNextPage, isError, isLoading } = useProvidersQuery(params);
 
-  const favoritesFound = data?.data?.filter((provider: ProviderProps) => {
-    return provider.is_favorited === true;
+  const providers =
+    data?.pages.flatMap((page) => {
+      return page.data;
+    }) ?? [];
+
+  const favoritesFound = providers.filter((provider: ProviderProps) => {
+    return provider.isFavorited === true;
   }).length;
 
-  const count = data?.meta.total;
+  const count = data?.pages[0]?.meta?.total;
 
   return (
     <div className="flex flex-col gap-4">
@@ -39,7 +44,13 @@ const HomePage = () => {
         textCount="providers found"
         title={t("filters.title")}
       />
-      <Cards data={data} isError={isError} isLoading={isLoading} />
+      <Cards
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isError={isError}
+        isLoading={isLoading}
+        providers={providers}
+      />
     </div>
   );
 };

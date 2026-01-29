@@ -1,13 +1,20 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { getProviders } from "./api";
+import { fetchProviders } from "./api";
+
+type queriesProps = {
+  pageParam: number | undefined;
+};
 
 export const queries = createQueryKeys("providers", {
   list: (params) => {
     return {
       queryKey: ["providers", params],
-      queryFn: () => {
-        return getProviders(params);
+      queryFn: ({ pageParam }: queriesProps) => {
+        return fetchProviders({
+          ...params,
+          page: pageParam,
+        });
       },
     };
   },

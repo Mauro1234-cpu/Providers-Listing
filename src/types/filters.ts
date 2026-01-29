@@ -6,7 +6,7 @@ export type FiltersHeaderProps = {
   desc: string;
   placeholder: string;
   filters: ProviderFilters;
-  countProviders: number | undefined;
+  countProviders: number | null | undefined;
   textCount: string;
   favoritesFound: number | undefined;
   setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;

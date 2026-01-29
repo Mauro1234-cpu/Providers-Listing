@@ -1,5 +1,11 @@
+import type {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+} from "@tanstack/react-query";
 import type z from "zod";
 
+import type { ProviderProps } from "@/types/cards";
 import type { RequestParams, UseQueryProps } from "../types";
 import type { queries } from "./factories";
 import type { providerSchema } from "./schemas";
@@ -22,17 +28,23 @@ export type ProviderRequestFilters = {
   gender?: number;
   name?: string;
   favorited?: boolean;
+  pageParam?: number;
 };
 export type ProviderRequestParams = RequestParams<Record<ProviderFilterKey, number | null>>;
 
 export type providerQueryProps = {
   params?: RequestParams<ProviderRequestFilters>;
   props?: UseQueryProps<typeof queries.list>;
-  pageParam?: number;
 };
 
 export type ProvidersQueryState = {
-  data?: ProvidersResponse;
+  providers: ProviderProps[];
+  fetchNextPage: (
+    options?: FetchNextPageOptions,
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<ProvidersResponse>, InfiniteData<ProvidersResponse>>
+  >;
+  hasNextPage: boolean;
   isLoading: boolean;
   isError: boolean;
 };

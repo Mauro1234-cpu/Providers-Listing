@@ -1,5 +1,5 @@
 type ProvidersFoundProps = {
-  countProviders: number | undefined;
+  countProviders: number | null | undefined;
   textCount: string;
 };
 

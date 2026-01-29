@@ -95,6 +95,9 @@ importers:
       react-i18next:
         specifier: ^16.4.1
         version: 16.4.1(i18next@25.7.2(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+      react-infinite-scroller:
+        specifier: ^1.2.6
+        version: 1.2.6(react@19.2.3)
       react-scan:
         specifier: ^0.4.3
         version: 0.4.3(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rollup@4.44.2)
@@ -174,6 +177,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
+      '@types/react-infinite-scroller':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.2.7(@types/node@24.10.2)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.3)(yaml@2.8.2))
@@ -2143,6 +2149,9 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
+  '@types/react-infinite-scroller@1.2.5':
+    resolution: {integrity: sha512-fJU1jhMgoL6NJFrqTM0Ob7tnd2sQWGxe2ESwiU6FZWbJK/VO/Er5+AOhc+e2zbT0dk5pLygqctsulOLJ8xnSzw==}
+
   '@types/react-reconciler@0.28.9':
     resolution: {integrity: sha512-HHM3nxyUZ3zAylX8ZEyrDNd2XZOnQ0D5XfunJF5FLQnZbHHYq4UWvW1QfelQNXv1ICNkwYhfxjwfnqivYB6bFg==}
     peerDependencies:
@@ -4038,6 +4047,11 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  react-infinite-scroller@1.2.6:
+    resolution: {integrity: sha512-mGdMyOD00YArJ1S1F3TVU9y4fGSfVVl6p5gh/Vt4u99CJOptfVu/q5V/Wlle72TMgYlBwIhbxK5wF0C/R33PXQ==}
+    peerDependencies:
+      react: ^0.14.9 || ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6803,6 +6817,10 @@ snapshots:
     dependencies:
       '@types/react': 19.2.7
 
+  '@types/react-infinite-scroller@1.2.5':
+    dependencies:
+      '@types/react': 19.2.7
+
   '@types/react-reconciler@0.28.9(@types/react@19.2.7)':
     dependencies:
       '@types/react': 19.2.7
@@ -8870,6 +8888,11 @@ snapshots:
     optionalDependencies:
       react-dom: 19.2.3(react@19.2.3)
       typescript: 5.9.3
+
+  react-infinite-scroller@1.2.6(react@19.2.3):
+    dependencies:
+      prop-types: 15.8.1
+      react: 19.2.3
 
   react-is@16.13.1: {}
 
