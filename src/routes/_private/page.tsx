@@ -1,4 +1,4 @@
-import { createFileRoute, useSearch } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { t } from "i18next";
 
 import { getSelectedFilters } from "@/hooks/use-providers-filter-selections";
@@ -15,7 +15,7 @@ import { FiltersHeader } from "./-components/filters/filters-header";
 const HomePage = () => {
   const { filters, setFilters } = useProvidersFilters();
 
-  const search = useSearch({ from: "/_private/" });
+  // const search = useSearch({ from: "/_private/" });
 
   const { selectedClinic, selectedGender, selectedSpecialty } = getSelectedFilters({ filters });
 
