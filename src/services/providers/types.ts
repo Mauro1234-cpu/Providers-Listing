@@ -6,8 +6,7 @@ import type {
 import type z from "zod";
 
 import type { ProviderProps } from "@/types/cards";
-import type { RequestParams, UseQueryProps } from "../types";
-import type { queries } from "./factories";
+import type { RequestParams } from "../types";
 import type { providerSchema } from "./schemas";
 
 export type User = z.infer<ReturnType<typeof providerSchema>>;
@@ -31,11 +30,6 @@ export type ProviderRequestFilters = {
   pageParam?: number;
 };
 export type ProviderRequestParams = RequestParams<Record<ProviderFilterKey, number | null>>;
-
-export type providerQueryProps = {
-  params?: RequestParams<ProviderRequestFilters>;
-  props?: UseQueryProps<typeof queries.list>;
-};
 
 export type ProvidersQueryState = {
   providers: ProviderProps[];
