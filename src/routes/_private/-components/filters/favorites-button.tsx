@@ -33,7 +33,7 @@ export const buttonVariants = tv({
 });
 
 type buttonProps = {
-  found: number;
+  found: number | undefined;
   filters: ProviderFilters;
   setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
 };

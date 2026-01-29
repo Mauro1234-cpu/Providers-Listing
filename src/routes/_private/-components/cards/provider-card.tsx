@@ -14,7 +14,7 @@ const providerCardVariants = tv({
   },
 });
 export const ProviderCard = ({ provider }: ProviderCardProps) => {
-  const { clinics, name, profile_pic, specialty } = provider;
+  const { clinics, name, profilePic, specialty } = provider;
 
   const clinicsCount = clinics.length - 1;
   let extraClinics = "";
@@ -25,7 +25,7 @@ export const ProviderCard = ({ provider }: ProviderCardProps) => {
     extraClinics = `+ ${clinicsCount} more location`;
   }
 
-  const providerPic = profile_pic || undefined;
+  const providerPic = profilePic || undefined;
 
   return (
     <div className="mx-6 mb-3 flex flex-col overflow-hidden rounded-2xl border border-border-default-default lg:mx-0 lg:w-1/4">

@@ -13,7 +13,7 @@ export type Clinic = {
   address: string | null;
   city: string | null;
   state: string | null;
-  zip_code: string | null;
+  zipCode: string | null;
   phone: string | null;
 };
 
@@ -25,10 +25,10 @@ export type ProviderProps = {
   gender: "male" | "female" | "other";
   about: string | null;
   languages: string[] | null;
-  profile_pic: string | null;
+  profilePic: string | null;
   specialty: Specialty;
   clinics: Clinic[];
-  is_favorited: boolean;
+  isFavorited: boolean;
 };
 
 export type ProviderCardProps = {

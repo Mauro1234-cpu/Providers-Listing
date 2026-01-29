@@ -32,12 +32,12 @@ export const CardModal = ({ provider }: ProviderModalProps) => {
   const upperLocation = "Location";
   const [isSelected, setIsSelected] = useState(overview.toLowerCase());
 
-  const { about, clinics, email, languages, name, phone, profile_pic, specialty } = provider;
+  const { about, clinics, email, languages, name, phone, profilePic, specialty } = provider;
   const language = () => {
     return languages?.join(", ");
   };
 
-  const providerPic = profile_pic || undefined;
+  const providerPic = profilePic || undefined;
 
   return (
     <>

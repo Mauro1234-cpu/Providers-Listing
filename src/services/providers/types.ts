@@ -28,6 +28,7 @@ export type ProviderRequestParams = RequestParams<Record<ProviderFilterKey, numb
 export type providerQueryProps = {
   params?: RequestParams<ProviderRequestFilters>;
   props?: UseQueryProps<typeof queries.list>;
+  pageParam?: number;
 };
 
 export type ProvidersQueryState = {
@@ -37,25 +38,16 @@ export type ProvidersQueryState = {
 };
 
 export type ProvidersResponse = {
-  links: {
-    first: string | null;
-    last: string | null;
-    prev: string | null;
-    next: string | null;
-  };
   meta: {
-    current_page: number | null;
-    from: number | null;
-    last_page: number | null;
-    links: {
+    lastPage: number | null;
+    currentPage: number | null;
+    links?: {
       url: string | null;
       label: string | null;
       page: number | null;
       active: boolean;
     };
-    path: string | null;
-    per_page: number | null;
-    to: number | null;
+    perPage: number | null;
     total: number | null;
   };
   data: {
@@ -66,7 +58,7 @@ export type ProvidersResponse = {
     gender: "male" | "female" | "other";
     about: string | null;
     languages: string[] | null;
-    profile_pic: string | null;
+    profilePic: string | null;
     specialty: {
       id: number;
       name: string;
@@ -77,9 +69,9 @@ export type ProvidersResponse = {
       address: string | null;
       city: string | null;
       state: string | null;
-      zip_code: string | null;
+      zipCode: string | null;
       phone: string | null;
     }[];
-    is_favorited: boolean;
+    isFavorited: boolean;
   }[];
 };

@@ -1,10 +1,10 @@
 type ProvidersFoundProps = {
-  countProviders: number;
+  countProviders: number | undefined;
   textCount: string;
 };
 
 export const ProvidersFound = ({ countProviders, textCount }: ProvidersFoundProps) => {
-  if (countProviders <= 0) {
+  if (!countProviders || countProviders <= 0) {
     return null;
   }
 
