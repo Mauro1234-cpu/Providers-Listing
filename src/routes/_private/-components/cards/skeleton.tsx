@@ -1,4 +1,4 @@
-export const LoadingState = () => {
+export const Skeleton = () => {
   return (
     <div className="flex w-full flex-col justify-center pt-12 lg:flex-row lg:flex-wrap lg:gap-8">
       {Array.from({ length: 6 }).map((_, index) => {
