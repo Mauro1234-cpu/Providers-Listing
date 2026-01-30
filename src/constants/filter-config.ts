@@ -1,8 +1,8 @@
-import type { FilterState } from "@/types/filters";
+import type { ProviderFiltersUI } from "@/types/filters";
 import { clinics, genders, specialties } from "./filter-groups";
 
 export const filterConfig: {
-  key: keyof FilterState;
+  key: keyof ProviderFiltersUI;
   data: {
     id: number;
     name: string;

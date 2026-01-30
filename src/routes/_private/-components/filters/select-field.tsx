@@ -2,21 +2,15 @@ import { useState } from "react";
 import { tv } from "tailwind-variants";
 
 import { Icons } from "@/components";
-import type { ProviderFilters } from "@/services/providers/types";
-import type { FilterState } from "@/types/filters";
-
-type Option = {
-  id: number;
-  name: string;
-};
+import type { Option, ProviderFiltersUI, UpdateFilters } from "@/types/filters";
 
 type SelectFieldProps = {
-  name: keyof FilterState;
+  name: keyof ProviderFiltersUI;
   filter: Option;
   options: Option[];
   isOpen: boolean;
   setOpenName: React.Dispatch<React.SetStateAction<string>>;
-  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
+  updateFilters: UpdateFilters;
 };
 
 const selectVariants = tv({
@@ -51,8 +45,8 @@ export const SelectField = ({
   isOpen,
   name,
   options,
-  setFilters,
   setOpenName,
+  updateFilters,
 }: SelectFieldProps) => {
   const [activeOption, setActiveOption] = useState<string>(filter.name);
 
@@ -85,11 +79,9 @@ export const SelectField = ({
                   className={button({ open: activeOption == option.name })}
                   key={option.id}
                   onClick={() => {
-                    setFilters((prev) => {
-                      return {
-                        ...prev,
-                        [name]: option.id,
-                      };
+                    const value = name === "gender" || name === "name" ? option.name : option.id;
+                    updateFilters({
+                      [name]: value,
                     });
                     setOpenName("");
                     setActiveOption(option.name);

@@ -4,14 +4,15 @@ import type { ProviderFilters, ProviderRequestFilters } from "./types";
 
 export const buildProviderParams = (
   selections: SelectedFilters,
-  filters?: ProviderFilters,
+  filter?: ProviderFilters,
 ): RequestParams<ProviderRequestFilters> => {
   return {
     filter: {
       clinic_id: selections.selectedClinic?.id,
       specialty_id: selections.selectedSpecialty?.id,
-      gender: selections.selectedGender?.id,
-      name: filters?.name || undefined,
+      gender: selections.selectedGender?.name,
+      name: filter?.name || "",
+      favorited: selections.selectedFavorited,
     },
   };
 };

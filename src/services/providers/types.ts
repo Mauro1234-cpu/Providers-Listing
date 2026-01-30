@@ -13,18 +13,20 @@ export type User = z.infer<ReturnType<typeof providerSchema>>;
 
 export type ProviderFilterKey = "clinic_id" | "specialty_id" | "gender" | "name" | "favorited";
 
-export type ProviderFilters = {
-  clinic: number | null;
-  specialty: number | null;
-  gender: number | null;
-  name: string;
-  favorited: boolean | null;
-};
+export type ProviderFilters =
+  | {
+      clinic: number | null;
+      specialty: number | null;
+      gender: string | null;
+      name: string | null;
+      favorited: boolean | null;
+    }
+  | undefined;
 
 export type ProviderRequestFilters = {
   clinic_id?: number;
   specialty_id?: number;
-  gender?: number;
+  gender?: string;
   name?: string;
   favorited?: boolean;
   pageParam?: number;

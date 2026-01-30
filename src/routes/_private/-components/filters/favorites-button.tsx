@@ -3,6 +3,7 @@ import { tv } from "tailwind-variants";
 
 import { Icons } from "@/components";
 import type { ProviderFilters } from "@/services/providers/types";
+import type { UpdateFilters } from "@/types/filters";
 
 export const buttonVariants = tv({
   slots: {
@@ -35,24 +36,21 @@ export const buttonVariants = tv({
 type buttonProps = {
   found: number | undefined;
   filters: ProviderFilters;
-  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
+  updateFilters: UpdateFilters;
 };
 
 const { base, count } = buttonVariants();
 
-export const FavoritesButton = ({ filters, found, setFilters }: buttonProps) => {
-  const active = filters.favorited || undefined;
+export const FavoritesButton = ({ filters, found, updateFilters }: buttonProps) => {
+  const active = filters?.favorited || undefined;
 
   return (
     <button
       className={base({ variant: "primary", size: "lg", isActive: active })}
       id="buttonFavorites"
       onClick={() => {
-        setFilters((prev) => {
-          return {
-            ...prev,
-            favorited: prev.favorited ? null : true,
-          };
+        updateFilters({
+          favorited: filters?.favorited ? null : true,
         });
       }}
       type="button"

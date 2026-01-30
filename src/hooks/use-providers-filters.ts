@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useSearch } from "@tanstack/react-router";
 
-import type { ProviderFilters } from "@/services/providers/types";
+import { Route } from "@/routes/_private/page";
+import type { ProviderFiltersQuery } from "@/types/filters";
 
 export const useProvidersFilters = () => {
-  const [filters, setFilters] = useState<ProviderFilters>({
-    specialty: null,
-    gender: null,
-    clinic: null,
-    name: "",
-    favorited: null,
-  });
+  const filters = useSearch({ from: "/_private/" });
+  const navigate = Route.useNavigate();
 
-  return { filters, setFilters };
+  const defaultFilters: ProviderFiltersQuery = {
+    specialty: null,
+    clinic: null,
+    gender: null,
+    name: null,
+    favorited: null,
+  };
+
+  const updateFilters = (filters: Partial<ProviderFiltersQuery>) => {
+    navigate({
+      search: (prev) => {
+        return {
+          ...(prev ?? defaultFilters),
+          ...filters,
+        };
+      },
+      replace: true,
+    });
+  };
+
+  return { filters, updateFilters };
 };

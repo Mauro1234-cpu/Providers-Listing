@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 import { filterConfig } from "@/constants/filter-config";
-import type { ProviderFilters } from "@/services/providers/types";
+import type { UpdateFilters } from "@/types/filters";
 import { SelectField } from "./select-field";
 
 type SelectsFieldsProps = {
-  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
+  updateFilters: UpdateFilters;
 };
 
-export const SelectsFields = ({ setFilters }: SelectsFieldsProps) => {
+export const SelectsFields = ({ updateFilters }: SelectsFieldsProps) => {
   const [openName, setOpenName] = useState("");
 
   return filterConfig.map(({ data, key }) => {
@@ -19,8 +19,8 @@ export const SelectsFields = ({ setFilters }: SelectsFieldsProps) => {
         key={key}
         name={key}
         options={data}
-        setFilters={setFilters}
         setOpenName={setOpenName}
+        updateFilters={updateFilters}
       />
     );
   });

@@ -2,15 +2,15 @@ import z from "zod";
 
 const GenderEnum = z.enum(["male", "female", "other"]);
 
-export const providerSearchSchema = z.object({
-  filter: z.object({
-    specialty: z.number().nullable(),
-    clinics: z.number().nullable(),
-    gender: z.string().nullable(),
-    name: z.string(),
-    favorited: z.boolean().nullable(),
-  }),
-});
+export const providerSearchSchema = z
+  .object({
+    specialty: z.number().nullable().default(null),
+    clinic: z.number().nullable().default(null),
+    gender: z.string().nullable().default(""),
+    name: z.string().nullable().default(""),
+    favorited: z.boolean().nullable().default(false),
+  })
+  .optional();
 
 export const providerSchema = () => {
   return z.object({

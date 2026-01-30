@@ -3,30 +3,32 @@ import type { ProviderFilters } from "@/services/providers/types";
 import type { SelectedFilters } from "@/types/filters";
 
 type SelectedProps = {
-  filters: ProviderFilters;
+  filters?: ProviderFilters;
 };
 
 export const getSelectedFilters = ({ filters }: SelectedProps): SelectedFilters => {
   const selectedClinic =
-    filters.clinic === 0
+    filters?.clinic == null
       ? undefined
       : clinics.find((c) => {
-          return c.id === filters.clinic;
+          return c.id === filters?.clinic;
         });
 
   const selectedSpecialty =
-    filters.specialty === 0
+    filters?.specialty == null
       ? undefined
       : specialties.find((s) => {
-          return s.id === filters.specialty;
+          return s.id === filters?.specialty;
         });
 
   const selectedGender =
-    filters.gender === 0
+    filters?.gender == null
       ? undefined
       : genders.find((g) => {
-          return g.id === filters.gender;
+          return g.name === filters?.gender;
         });
 
-  return { selectedClinic, selectedSpecialty, selectedGender };
+  const selectedFavorited = filters?.favorited == null ? undefined : filters?.favorited;
+
+  return { selectedClinic, selectedSpecialty, selectedGender, selectedFavorited };
 };

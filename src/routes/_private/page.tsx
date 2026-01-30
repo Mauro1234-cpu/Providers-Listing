@@ -5,21 +5,19 @@ import { getSelectedFilters } from "@/hooks/use-providers-filter-selections";
 import { useProvidersFilters } from "@/hooks/use-providers-filters";
 import { useProvidersQuery } from "@/services/providers/actions";
 import { buildProviderParams } from "@/services/providers/build-provider-params";
+import { providerSearchSchema } from "@/services/providers/schemas";
 import type { ProviderProps } from "@/types/cards";
 import { Cards } from "./-components/cards/cards";
 import { FiltersHeader } from "./-components/filters/filters-header";
 
-// type providerSearch = z.infer<typeof providerSearchSchema>
-
 const HomePage = () => {
-  const { filters, setFilters } = useProvidersFilters();
+  const { filters, updateFilters } = useProvidersFilters();
 
-  // const search = useSearch({ from: "/_private/" });
-
-  const { selectedClinic, selectedGender, selectedSpecialty } = getSelectedFilters({ filters });
+  const { selectedClinic, selectedFavorited, selectedGender, selectedSpecialty } =
+    getSelectedFilters({ filters });
 
   const params = buildProviderParams(
-    { selectedClinic, selectedGender, selectedSpecialty },
+    { selectedClinic, selectedGender, selectedSpecialty, selectedFavorited },
     filters,
   );
 
@@ -34,19 +32,23 @@ const HomePage = () => {
     return provider.isFavorited === true;
   }).length;
 
-  const count = data?.pages[0]?.meta?.total;
+  let count = null;
+
+  if (data?.pages[0]?.meta?.total) {
+    count = data.pages[0].meta.total;
+  }
 
   return (
     <div className="flex flex-col gap-4">
       <FiltersHeader
-        countProviders={count}
+        countProviders={count ?? null}
         desc={t("filters.desc")}
         favoritesFound={favoritesFound}
         filters={filters}
         placeholder={t("filters.placeholder")}
-        setFilters={setFilters}
         textCount="providers found"
         title={t("filters.title")}
+        updateFilters={updateFilters}
       />
       <Cards
         fetchNextPage={fetchNextPage}
@@ -61,7 +63,7 @@ const HomePage = () => {
 
 export const Route = createFileRoute("/_private/")({
   component: HomePage,
-  // validateSearch: (search) => {
-  //   providerSearchSchema.parse(search);
-  // },
+  validateSearch: (search) => {
+    return providerSearchSchema.parse(search);
+  },
 });

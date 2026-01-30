@@ -10,9 +10,9 @@ export const FiltersHeader = ({
   favoritesFound,
   filters,
   placeholder,
-  setFilters,
   textCount,
   title,
+  updateFilters,
 }: FiltersHeaderProps) => {
   return (
     <div className="pEx-6 pt-3 lg:px-35 lg:pt-6">
@@ -28,21 +28,22 @@ export const FiltersHeader = ({
               className="w-full outline-none placeholder:text-sm placeholder:leading-5 placeholder:text-text-disabled-default"
               id="search-form"
               onChange={(e) => {
-                return setFilters((prev) => {
-                  return {
-                    ...prev,
-                    search: e.target.value,
-                  };
+                return updateFilters({
+                  name: e.target.value,
                 });
               }}
               placeholder={placeholder}
               type="text"
-              value={filters.name}
+              value={filters?.name ?? ""}
             />
           </div>
           <div className="flex flex-col gap-4 lg:flex-row">
-            <SelectsFields setFilters={setFilters} />
-            <FavoritesButton filters={filters} found={favoritesFound} setFilters={setFilters} />
+            <SelectsFields updateFilters={updateFilters} />
+            <FavoritesButton
+              filters={filters}
+              found={favoritesFound}
+              updateFilters={updateFilters}
+            />
           </div>
         </form>
         <ProvidersFound countProviders={countProviders} textCount={textCount} />

@@ -1,36 +1,38 @@
-import type { clinics, genders, specialties } from "@/constants/filter-groups";
-import type { ProviderFilters } from "@/services/providers/types";
+import type z from "zod";
+
+import type { providerSearchSchema } from "@/services/providers/schemas";
+
+export type ProviderFiltersQuery = NonNullable<ProviderSearch>;
+export type ProviderSearch = z.infer<typeof providerSearchSchema>;
+export type UpdateFilters = (filters: Partial<ProviderFiltersQuery>) => void;
+
+export type Option = {
+  id: number;
+  name: string;
+};
 
 export type FiltersHeaderProps = {
   title: string;
   desc: string;
   placeholder: string;
-  filters: ProviderFilters;
-  countProviders: number | null | undefined;
+  filters: ProviderSearch;
+  countProviders: number | null;
   textCount: string;
   favoritesFound: number | undefined;
-  setFilters: React.Dispatch<React.SetStateAction<ProviderFilters>>;
+  updateFilters: UpdateFilters;
 };
 
-export type FilterState = {
-  specialty: (typeof specialties)[number] | "";
-  gender: (typeof genders)[number] | "";
-  clinic: (typeof clinics)[number] | "";
-  search: string;
-  favorited: boolean;
+export type ProviderFiltersUI = {
+  specialty: Option | null;
+  clinic: Option | null;
+  gender: string;
+  name: string;
+  favorited: boolean | null;
 };
 
 export type SelectedFilters = {
-  selectedClinic?: {
-    id: number;
-    name: string;
-  };
-  selectedSpecialty?: {
-    id: number;
-    name: string;
-  };
-  selectedGender?: {
-    id: number;
-    name: string;
-  };
+  selectedClinic?: Option;
+  selectedSpecialty?: Option;
+  selectedGender?: Option;
+  selectedFavorited: boolean | undefined;
 };
