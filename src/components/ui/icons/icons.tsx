@@ -3,6 +3,9 @@ import type { IconProps } from "@iconify/react";
 import { Icon, loadIcons } from "@iconify/react";
 import { tv } from "tailwind-variants";
 
+import { MailIcon } from "@/assets/mail-icon";
+import { PhoneIcon } from "@/assets/phone-icon";
+import { LangIcon } from "@/routes/_private/-components/cards/lang-icon";
 import { SIZE, type Size, type Styled } from "@/types/styles";
 
 const LUCIDE_PREFIX = "lucide:";
@@ -67,6 +70,12 @@ type IconifyIconProps = {
   isError?: boolean;
 } & Omit<IconProps, "icon">;
 
+const customIcons = {
+  Phone: PhoneIcon,
+  Mail: MailIcon,
+  Lang: LangIcon,
+};
+
 const iconifyIcons = Object.fromEntries(
   Object.entries(AVAILABLE_ICONIFY_ICONS).map(([key, value]) => {
     return [
@@ -84,7 +93,18 @@ const iconifyIcons = Object.fromEntries(
   }),
 ) as Record<keyof typeof AVAILABLE_ICONIFY_ICONS, (props: IconifyIconProps) => JSX.Element>;
 
-export const Icons = { ...iconifyIcons } as const;
+const svgIcons = Object.fromEntries(
+  Object.entries(customIcons).map(([key, Component]) => {
+    return [
+      key,
+      ({ className, isError, ...rest }: IconifyIconProps) => {
+        return <Component className={icon({ className, isError })} {...rest} />;
+      },
+    ];
+  }),
+) as Record<keyof typeof customIcons, (props: IconifyIconProps) => JSX.Element>;
+
+export const Icons = { ...iconifyIcons, ...svgIcons } as const;
 
 type IconWrapperProps<TElement extends ElementType> = {
   size?: Size;

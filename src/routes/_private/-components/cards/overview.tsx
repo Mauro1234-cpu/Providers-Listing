@@ -1,9 +1,7 @@
 import { t } from "i18next";
 
-import { MailIcon } from "@/assets/mail-icon";
-import { PhoneIcon } from "@/assets/phone-icon";
+import { Icons } from "@/components";
 import { InfoRow } from "./info-row";
-import { LangIcon } from "./lang-icon";
 
 type OverviewProps = {
   desc: string | null;
@@ -27,14 +25,14 @@ export const Overview = ({ desc, emailInfo, langInfo, phoneInfo }: OverviewProps
           {t("modal.overview.contact")}
         </p>
         <div className="flex flex-col pl-1 lg:flex-row lg:items-center lg:gap-6">
-          <InfoRow icon={<PhoneIcon className="size-5" />}>{phoneInfo}</InfoRow>
-          <InfoRow icon={<MailIcon className="size-5" />}>{emailInfo}</InfoRow>
+          <InfoRow icon={<Icons.Phone className="size-5" />}>{phoneInfo}</InfoRow>
+          <InfoRow icon={<Icons.Mail className="size-5" />}>{emailInfo}</InfoRow>
         </div>
       </div>
 
       <div className="flex flex-col gap-1">
         <p className="text-primary text-lg font-medium">{t("modal.overview.langs")}</p>
-        <InfoRow icon={<LangIcon />}>{langInfo}</InfoRow>
+        <InfoRow icon={<Icons.Lang />}>{langInfo}</InfoRow>
       </div>
     </div>
   );
