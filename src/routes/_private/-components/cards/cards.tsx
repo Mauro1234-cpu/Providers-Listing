@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 
 import type { ProvidersQueryState } from "@/services/providers/types";
 import type { ProviderProps } from "@/types/cards";
-import { LoadingState } from "./loading-state";
 import { NotFound } from "./not-found";
 import { ProviderCard } from "./provider-card";
+import { Skeleton } from "./skeleton";
 
 export const Cards = ({
   fetchNextPage,
@@ -35,14 +35,14 @@ export const Cards = ({
   }, [fetchNextPage, hasNextPage]);
 
   if (isLoading) {
-    return <LoadingState />;
+    return <Skeleton />;
   }
 
   if (isError) {
     return <div className="p-8 text-center text-red-500">{}</div>;
   }
 
-  if (providers === null) {
+  if (!providers || providers.length === 0) {
     return <NotFound />;
   }
 
