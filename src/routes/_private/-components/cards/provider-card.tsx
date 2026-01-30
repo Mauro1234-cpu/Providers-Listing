@@ -5,6 +5,7 @@ import { NoImage } from "@/assets/no-image";
 import { Icons } from "@/components";
 import type { ProviderCardProps } from "@/types/cards";
 import { CardModal } from "./card-modal";
+import { FavoriteProviderButton } from "./favorite-provider-button";
 
 const providerCardVariants = tv({
   base: "flex flex-row items-center gap-2 align-top",
@@ -15,7 +16,7 @@ const providerCardVariants = tv({
   },
 });
 
-export const ProviderCard = ({ count, filters, provider, updateFilters }: ProviderCardProps) => {
+export const ProviderCard = ({ provider }: ProviderCardProps) => {
   const { clinics, name, profilePic, specialty } = provider;
 
   const clinicsCount = clinics.length - 1;
@@ -35,9 +36,7 @@ export const ProviderCard = ({ count, filters, provider, updateFilters }: Provid
         ) : (
           <NoImage className="h-full" />
         )}
-        <button className="absolute top-3 right-3 rounded-full bg-white p-2 shadow-md">
-          <Icons.Heart className="size-5" />
-        </button>
+        <FavoriteProviderButton />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div>
