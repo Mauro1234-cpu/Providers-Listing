@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import { tv } from "tailwind-variants";
 
+import { NoImage } from "@/assets/no-image";
 import { Icons } from "@/components";
 import type { ProviderCardProps } from "@/types/cards";
 import { CardModal } from "./card-modal";
@@ -25,11 +26,13 @@ export const ProviderCard = ({ provider }: ProviderCardProps) => {
     extraClinics = `+ ${clinicsCount} more location`;
   }
 
-  const providerPic = profilePic || undefined;
-
   return (
     <div className="mx-6 mb-3 flex flex-col overflow-hidden rounded-2xl border border-border-default-default lg:mx-0 lg:w-1/4">
-      <img alt="Doctor image" src={providerPic} />
+      {profilePic ? (
+        <img alt="Doctor image" className="h-55 w-full object-cover" src={profilePic} />
+      ) : (
+        <NoImage className="h-full" />
+      )}
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div>
           <h1 className="mb-1 text-2xl font-semibold text-text-default-default">
