@@ -14,7 +14,8 @@ const providerCardVariants = tv({
     },
   },
 });
-export const ProviderCard = ({ provider }: ProviderCardProps) => {
+
+export const ProviderCard = ({ count, filters, provider, updateFilters }: ProviderCardProps) => {
   const { clinics, name, profilePic, specialty } = provider;
 
   const clinicsCount = clinics.length - 1;
@@ -28,11 +29,16 @@ export const ProviderCard = ({ provider }: ProviderCardProps) => {
 
   return (
     <div className="mx-6 mb-3 flex flex-col overflow-hidden rounded-2xl border border-border-default-default lg:mx-0 lg:w-1/4">
-      {profilePic ? (
-        <img alt="Doctor image" className="h-55 w-full object-cover" src={profilePic} />
-      ) : (
-        <NoImage className="h-full" />
-      )}
+      <div className="relative">
+        {profilePic ? (
+          <img alt="Doctor image" className="h-55 w-full object-cover" src={profilePic} />
+        ) : (
+          <NoImage className="h-full" />
+        )}
+        <button className="absolute top-3 right-3 rounded-full bg-white p-2 shadow-md">
+          <Icons.Heart className="size-5" />
+        </button>
+      </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div>
           <h1 className="mb-1 text-2xl font-semibold text-text-default-default">
