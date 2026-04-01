@@ -399,7 +399,7 @@ code {
 
   --color-text-default-default: var(--primary-950);
   --color-text-default-secondary: var(--gray-800);
-  --color-text-default-tertiary: var();
+  --color-text-default-tertiary: var(--gray-600);
 
   --color-text-disabled-default: var(--gray-500);
   --color-text-disabled-on-disabled: var(--brand-300);

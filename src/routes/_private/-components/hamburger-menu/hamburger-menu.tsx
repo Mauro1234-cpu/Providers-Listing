@@ -1,11 +1,15 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button, DropdownMenu, Icons } from "@/components";
+import { DropdownMenu, Icons } from "@/components";
 import { type resources } from "@/i18n";
 import { LogoutButton } from "./logout-button";
 
-export const HamburgerMenu = () => {
+type HamburgerMenuProps = {
+  text: string;
+};
+
+export const HamburgerMenu = ({ text }: HamburgerMenuProps) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (lng: keyof typeof resources) => {
@@ -21,13 +25,9 @@ export const HamburgerMenu = () => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <Button
-          className="focus-visible:ring-background-default-default/25"
-          size="icon"
-          variant="secondary"
-        >
-          <Icons.Menu />
-        </Button>
+        <p className="flex size-10 items-center justify-center bg-background-brand-default text-white">
+          {text}
+        </p>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>

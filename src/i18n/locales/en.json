@@ -4,6 +4,8 @@
     "no": "No",
     "close": "Close",
     "filter": "Filter",
+    "error": "Error",
+    "loading": "Loading...",
     "requestError": "Unable to complete the request. Please try again later."
   },
   "greetings": {
@@ -13,9 +15,37 @@
     "publicLayout": "Public layout! I render on all paths inside the /(public)/ folder",
     "home": "Welcome Home!"
   },
+  "header": {
+    "title": "HealthConnect",
+    "description": "Find your healthcare provider"
+  },
+  "filters": {
+    "title": "Healthcare Providers",
+    "desc": "Find and connect with healthcare professionals in your area",
+    "placeholder": "Search providers by name...",
+    "found": "providers found",
+    "notFounds": "No providers found matching your search.",
+    "adjustFilters": "Try adjusting your filters."
+  },
   "notFound": {
     "title": "404 - Page Not Found",
     "description": "The page you are looking for does not exist."
+  },
+  "cards": {
+    "name": "Dr. {field}",
+    "button": "View details"
+  },
+  "modal": {
+    "location": {
+      "name": "Location",
+      "redirect": "View on Google Maps"
+    },
+    "overview": {
+      "name": "Overview",
+      "contact": "Contact information",
+      "langs": "Languages",
+      "about": "About"
+    }
   },
   "form": {
     "email": "Email",
@@ -34,6 +64,9 @@
       "confirm": "Please confirm your password"
     }
   },
+
+  "favorites": "Favorites",
+
   "login": {
     "welcome": "Welcome back",
     "description": "Enter your email and password to access your account",

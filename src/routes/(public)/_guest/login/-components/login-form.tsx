@@ -2,13 +2,14 @@ import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate, useRouter, useSearch } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { tv } from "tailwind-variants";
 
 import { Button, ErrorMessage, Input, Label, PasswordInput } from "@/components";
 import { getLoginPayloadSchema, type LoginPayload, useLogin } from "@/services";
 import { setAuthStoreToken } from "@/stores";
+import { setIdStore } from "@/stores/use-id-store";
 import { handleAxiosFieldErrors } from "@/utils";
 
 const loginFormVariants = tv({
@@ -24,14 +25,18 @@ const loginFormVariants = tv({
 
 const { spin } = loginFormVariants();
 
+export const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+};
+
 export const LoginForm = () => {
   const { t } = useTranslation();
 
   const loginMutation = useLogin();
 
   const router = useRouter();
-  const search = useSearch({ from: "/(public)/_guest/login/" });
-  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -47,23 +52,17 @@ export const LoginForm = () => {
 
   const errorMessage = errors;
 
-  const sleep = (milliseconds: number) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, milliseconds);
-    });
-  };
-
   const onSubmit: SubmitHandler<LoginPayload> = async (data) => {
     setIsSubmitting(true);
     await sleep(2000);
 
     loginMutation.mutate(data, {
       onSuccess: async ({ data: responseData }) => {
-        const { authToken } = responseData.data;
+        const { accessToken } = responseData.data;
         toast.success(t("login.success"));
-        setAuthStoreToken(authToken);
+        setAuthStoreToken(accessToken);
+        setIdStore(accessToken);
         await router.invalidate();
-        await navigate({ to: search.redirect || "/" });
       },
       onError: (error) => {
         setIsSubmitting(false);

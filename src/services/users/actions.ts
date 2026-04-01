@@ -5,7 +5,7 @@ import { mutations, queries } from "./factories";
 import type { User, UserFilterKey } from "./types";
 
 export const useUser = (id: User["id"], props?: UseQueryProps<typeof queries.detail>) => {
-  return useQuery({ ...queries.detail(id), ...props });
+  return useQuery({ ...queries.detail(id), ...props, enabled: !!id });
 };
 
 export const useUsers = (
